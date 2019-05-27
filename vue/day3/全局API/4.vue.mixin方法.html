@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <div id="demo2"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 全局混入
+        // 局部优先级最高
+        Vue.mixin({
+            data() {
+                return {
+                    name: "yao"
+                }
+            },
+            methods: {
+                test() {
+                    console.log(1)
+                }
+            }
+        })
+        new Vue({
+            el: "#demo",
+            created() {
+            },
+            template: `
+                <div>
+                    <div v-text="message"></div>
+                    <button @click="test">ok</button>
+                </div>
+            `,
+            data: {
+                message: "没有更新"
+            },
+            // 挂载后
+            mounted() {
+            },
+            methods: {
+                test() {
+                    console.log(2)
+                }
+            }
+        })
+
+        new Vue({
+            el: "#demo2",
+        })
+    </script>
+</body>
+
+</html>

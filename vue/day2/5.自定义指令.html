@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 内置指令 -->
+        <p v-text></p>
+        <!-- 第三方指令 -->
+        <p v-color="color">自定义指令</p>
+        <p v-color="'blue'">自定义指令</p>
+        <p v-hide="bool" v-color="'green'">自定义指令</p>
+        <div v-xhtml="html"></div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.directive('color', (el, binding) => {
+            console.log(el, binding)
+            // binding该指令被传入的参数
+            el.style.color = binding.value
+        })
+        new Vue({
+            el: "#demo",
+            data: {
+                color: "red",
+                bool: !true,
+                html: "<div>123<span style='color:red'>456</span>789</div>"
+            },
+            directives: {
+                // el 你用该指令时候的作用域，节点
+                // binding
+                hide(el, binding) {
+                    el.style.display = binding.value ? 'none' : 'block'
+                },
+                xhtml(el, binding) {
+                    el.innerHTML = binding.value
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

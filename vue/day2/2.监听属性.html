@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- v-指令 -->
+    <div id="demo">
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            // 选项
+            el: "#demo",
+            props: [],
+            // View
+            template: `
+                <div>
+                    <input v-model="lastName" />
+                    <hr />
+                    lastName:
+                    <p v-text="lastName"></p>
+                    name:
+                    <p v-text="name"></p>
+                </div>
+            `,
+            // 计算属性
+            // 通过计算得出一个值
+            // Model
+            computed: {
+                name() {
+                    let firstName = 'hello';
+                    // 计算出来得到的一个值
+                    return firstName + this.lastName
+                }
+            },
+
+            // 简单数据
+            data: {
+                lastName: 'world',
+                // text: 'hello world'
+            },
+            // 监听属性
+            // 只要值发生变化，那么就会触发该回调函数
+            watch: {
+                // name只要被改变，那么这个函数就会被触发
+                name(){
+                    console.log(this.name);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 全局定义 全局组件 声明+注册
+        // Vue.component()
+        // 声明组件 还没注册
+
+        new Vue({
+            el: "#demo",
+            created() {
+                // this.name = "jing"
+                // // $.ajax();
+                // setTimeout(() => {
+                //     this.name = "lin"
+                // }, 2000)
+            },
+            template: `
+                <div>
+                    <div v-text="message"></div>
+                    <button @click="updateMessage">ok</button>
+                </div>
+            `,
+            data: {
+                name: "yao",
+                message: "没有更新"
+            },
+            // 挂载后
+            mounted() {
+                this.$nextTick(() => {
+                    // 监听到整个DOM解构趋于稳定，再去处罚这个DOM解构修改，就可以把这个解构放进这个地方
+                    // DOM 更新了
+                    console.log("DOM 更新了")
+                })
+            },
+            methods: {
+                updateMessage: function () {
+                    // 更新虚拟DOM和数据
+                    this.message = '更新完成'
+                    // 真实DOM是没有更新
+                    console.log(this.$el.textContent) // => '没有更新'
+                    // 监听真实DOM完全渲染成功
+                    // Vue.nextTick()
+                    this.$nextTick(function () {
+                        console.log(this.$el.textContent) // => '更新完成'
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

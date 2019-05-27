@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="demo">
+
+    </div>
+    <script>
+        // Model
+        let data = {
+            name: "yao"
+        }
+        // Vue核心方法 它接受三个参数 ES6的方法
+        // 第一个参数接受需要被监听的对象
+        // 第二个参数需要接受监听对象的属性值
+        // 第三个参数是配置set和get
+        let val;
+        Object.defineProperty(data, "name", {
+            // 如果设置值的话会出发set
+            set(newValue) {
+                val = newValue;
+                console.log('set',newValue);
+                // 操作节点，交给set的回调函数
+                document.getElementById("demo").innerHTML = data.name
+            },
+            // 如果获取值话会出发get
+            get() {
+                console.log('get')
+                return val;
+            }
+        })
+        // 变动数据
+        setInterval(()=>{
+            data.name = parseInt(Math.random()*1000);
+        },1000)
+        // data.name //触发get
+        // data.name = 'lin' //触发set
+    </script>
+</body>
+
+</html>

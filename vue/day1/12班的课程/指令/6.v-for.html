@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="demo">
+        <!-- index索引值 数组或者对象的下标 key在该指令里面是关键字 建议加上key -->
+        <p :key="index" :kllllll="index" v-for="(a,index) in arr" v-text="a.name"></p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // Model
+        // 数据驱动
+        new Vue({
+            el: "#demo",
+            data: {
+                arr: [{
+                    name: "yao",
+                    age: 18
+                }, {
+                    name: "lin",
+                    age: 17
+                }, {
+                    name: "jing",
+                    age: 19
+                }]
+            }
+        })
+    </script>
+</body>
+
+</html>

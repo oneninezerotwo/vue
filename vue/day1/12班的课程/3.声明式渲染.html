@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- CSS在上面 -->
+    <div id="demo">
+        <!-- {{}}  vue的语法-->
+        <!-- v-text这个属性值不是我们html的内置属性 -->
+        <p v-text="'姓名:'+name" sdaashdkajshdkashdaskdj  ausdoisadkashdkas></p>
+        <p v-text="'姓名:'+name" sdaashdkajshdkashdaskdj  ausdoisadkashdkas></p>
+        <p 这个公司不要去了因为老板太坑了 工资又低 又要加班 name="abc" style="color:red">123</p>
+    </div>
+    <!-- JS在下面 -->
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#demo",
+            data:{
+                name:"yao"
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .abc {
+            color: red;
+        }
+
+        .cba {
+            color: blue;
+        }
+
+        .size {
+            font-size: 40px;
+        }
+    </style>
+    <div id="demo">
+        <!-- v-bind: 简写: -->
+        <p v-bind:class="{
+            'abc': true,
+            'cba': true,
+            'size': false
+        }">{{title}}</p>
+
+        <p v-bind:class="style">{{bool?title:'World Hello'}}</p>
+
+        <p v-bind:class="{
+            'abc': bool,
+            'cba': !bool,
+            'size': bool
+        }">{{title}}</p>
+
+        <p :class="{
+            'abc': bool,
+            'cba': !bool,
+            'size': bool
+        }">{{title}}</p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World",
+                style: {
+                    'abc': true,
+                    'cba': true,
+                    'size': true
+                },
+                bool: true
+            }
+        })
+
+        setInterval(()=>{
+            vm.bool = !vm.bool
+        },1000)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p style="color:red">1.currency</p>
+        <p v-text="num|currency"></p>
+        <!-- 第二种用计算属性代替过滤器 -->
+        <p v-text="computedNum"></p>
+
+        <p style="color:red">2.uppercase</p>
+        <p v-text="str|uppercase"></p>
+        <!-- 第一种是用函数代替过滤器 -->
+        <p v-text="uppercase(str)"></p>
+        <p v-text="skill()"></p>
+    </div>
+    <script src="../../js/vue1.js"></script>
+    <script>
+        new Vue({
+            el: "#demo",
+            data: {
+                num: 123456789,
+                str: "aBcDEfGhij",
+                // skill: ['ps', 'css', 'js']
+            },
+            // 2.0可以用计算属性来代替内置过滤器
+            computed: {
+                computedNum() {
+                    return `$${this.num}`
+                }
+            },
+            // 可以用函数式编程代替
+            methods: {
+                uppercase(str) {
+                    return str.toUpperCase();
+                },
+                skill() {
+                    return ['ps', 'css', 'js']
+                }
+            }
+        })
+        // 95
+        // 
+    </script>
+</body>
+
+</html>

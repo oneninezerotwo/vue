@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- v-指令 -->
+    <div id="demo">
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            // 选项
+            el: "#demo",
+            props: [],
+            // View
+            template: `
+                <div>
+                    <input v-model="username" />
+                    <input v-model="password" />
+                    <p v-text="usernameLength"></p>
+                    <p v-text="passwordLength"></p>
+                    
+                    <button :disabled="bool">登陆</button>
+                </div>
+            `,
+            // 计算属性
+            // 通过计算得出一个值
+            // Model
+            computed: {
+                usernameLength() {
+                    // 正则去返回一个布尔值
+                    return this.username.length
+                },
+                // 密码的长度
+                passwordLength() {
+                    return this.password.length
+                }
+            },
+
+            // 简单数据
+            data: {
+                username: "",
+                password: "",
+                bool: true
+            },
+            // 监听属性
+            // 只要值发生变化，那么就会触发该回调函数
+            watch: {
+                // name只要被改变，那么这个函数就会被触发
+                username() {
+                    console.log(this.username);
+                    if (this.username.length > 0 && this.password.length > 0) {
+                        this.bool = false
+                    } else {
+                        this.bool = true
+                    }
+                },
+                password() {
+                    console.log(this.password);
+                    if (this.username.length > 0 && this.password.length > 0) {
+                        this.bool = false
+                    } else {
+                        this.bool = true
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

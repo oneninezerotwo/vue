@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="demo">
+        <!-- $().append() $().remove() -->
+        <!-- show用在频繁切换  选项卡 loading加载中 弹窗 display的方式 -->
+        <!-- if用在非频繁切换 大部分一开始就决定是否显示的页面 权限管理删除按钮的控制 -->
+        <p v-if="!1" v-text="name"></p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // Model
+        // 数据驱动
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "yao"
+            }
+        })
+    </script>
+</body>
+
+</html>

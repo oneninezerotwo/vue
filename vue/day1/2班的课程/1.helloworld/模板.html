@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 我们vue控制的范围 -->
+        <p>{{title}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        let vm = new window.Vue({
+            el: "#demo", //element 节点，选择器 一把用id选择器，因为id是唯一的，作用域的含义
+            data: {
+                title: "hello world"
+            }
+        });
+    </script>
+</body>
+
+</html>

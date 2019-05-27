@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .size {
+            font-size: 80px;
+        }
+    </style>
+    <!-- View -->
+    <div id="demo">
+        <!-- $().attr() -->
+        <p v-bind:name="name" v-text="name"></p>
+
+        <p :id="skill">skill</p>
+        <!-- $().css() -->
+        <p :style="style">style</p>
+        <!-- $().addClass $().removeClass() -->
+        <p :class="classList">classList</p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // Model
+        // 数据驱动
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "yao",
+                skill: ['ps', 'css', 'js'],
+                // 如果是style的话，那必须接受对象
+                style: {
+                    color: 'red',
+                    fontSize: '50px'
+                },
+                // 对象左边是样式的类名，右边是否加入该类
+                classList: {
+                    red: true,
+                    size: true
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

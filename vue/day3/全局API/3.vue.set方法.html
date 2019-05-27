@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 全局定义 全局组件 声明+注册
+        // Vue.component()
+        // 声明组件 还没注册
+
+        let vm = new Vue({
+            el: "#demo",
+            created() {
+            },
+            template: `
+                <div>
+                    <div v-text="message"></div>
+                    <button @click="updateMessage">ok</button>
+                </div>
+            `,
+            data: {
+                message: "没有更新"
+            },
+            // 挂载后
+            mounted() {
+            },
+            methods: {
+                updateMessage: function () {
+                    console.log(this);
+                    let obj = {
+                        name: "yao"
+                    }
+                    
+                    // this.$set
+                    Vue.set(vm.$ajax, "skill", ['ps','css','js'])
+                    // Vue.delete("name")
+                    // console.log(this)
+
+                    // 往Vue对象里面封装一些共有方法，可以全局使用
+                    // this.$ajax.get();
+                    // vm.$ajax.get();
+                }
+            }
+        })
+        vm.$ajax = {
+            get(){
+                let xmlhttp = new XMLHttpRequest();
+                console.log("ajax")
+            }
+        }
+        vm.$cookie = {
+            set(){},
+            get(){}
+        }
+    </script>
+</body>
+
+</html>

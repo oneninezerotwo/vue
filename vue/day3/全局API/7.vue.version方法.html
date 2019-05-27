@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 仓库
+        // 公有变量
+        new Vue({
+            el: "#demo",
+            data: {
+                // 私有变量
+                message: "没有更新"
+            },
+            mounted() {
+                // 打印版本号
+                console.log(Vue.version);
+            }
+        })
+    </script>
+</body>
+
+</html>

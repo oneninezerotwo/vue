@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="demo">
+        <!-- V->M  onchange -->
+        <input type="range" v-model="size" />
+        <textarea v-model="name"></textarea>
+        <select v-model="color">
+            <option value="red">1</option>
+            <option value="blue">2</option>
+            <option value="yellow">3</option>
+        </select>
+        <!-- M->V -->
+        <p :style="{
+            'fontSize':`${size}px`,
+            'color':color
+        }" v-text="size"></p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // Model
+        // 数据驱动
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "yao",
+                size: 40,
+                color: "red"
+            }
+        })
+    </script>
+</body>
+
+</html>

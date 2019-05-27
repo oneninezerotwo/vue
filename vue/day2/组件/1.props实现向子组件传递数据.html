@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        Vue.component("xheader", {
+            // 老爸给你留下的遗产
+            // 把组件属性值上的name传递到该对象里面
+            props: ["name"],
+            template: `
+                <div v-text="name"></div>
+            `,
+            // 私有变量
+            data() {
+                return {
+                    title: "头部组件"
+                }
+            }
+        })
+        new Vue({
+            el: "#demo",
+            data: {
+                name1:"微信",
+                name2:"通讯录"
+            },
+            // 老爸new Vue容器往两个不同的xheader传递不同的name值
+            template: `
+                <div>
+                    <xheader :name="name1"></xheader>
+                    <xheader :name="name2"></xheader>
+                <div>
+            `
+        })
+    </script>
+</body>
+
+</html>

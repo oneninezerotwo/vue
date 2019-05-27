@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "yaoS"
+            },
+            template: `
+                <div ref="test">
+                    {{name}}
+                    <input ref="input" v-model="name" />
+                </div>
+            `,
+            // 创建前
+            beforeCreate() {
+                // 一般这里是没有逻辑的，会做一些项目的初始化逻辑
+                console.log('--------创建前--------')
+                // 创建前 数据和模板都没有准备好
+                console.log(this.$el)
+                console.log(this.$data)
+            },
+            // 创建后
+            created() {
+                // 如果你需要更改数据的话，ajax放在这个生命周期
+                console.log('--------创建后--------')
+                // 创建后 数据准备好了，模板没准备好
+                console.log(this.$el)
+                console.log(this.$data)
+            },
+            // 挂载前
+            beforeMount() {
+                // 处理refs
+                // 修改的模板 虚拟DOM
+                console.log('--------挂载前--------')
+                // 创建后 数据准备好了，模板没准备好
+                console.log(this.$el)
+                console.log(this.$data)
+                // 建议使用指令配合数据更改虚拟DOM，而非ref的节点驱动方案
+                // 可以在虚拟DOM里面放入ref 就是虚拟DOM的选择器
+            },
+            // 挂载后
+            mounted() {
+                // ref
+                // 修改真实节点 真实DOM
+                console.log('--------挂载后--------')
+                // 创建后 数据准备好了，模板没准备好
+                console.log(this.$el)
+                console.log(this.$data)
+                this.$refs.input.focus();
+                console.log(this.$refs);
+            },
+            // 更新前
+            beforeUpdate() {
+                console.log('--------更新前--------')
+                // 更新了数据和虚拟DOM
+                // 真实DOM没更新
+                // alert(1)
+                console.log(this.$el)
+                console.log(this.$data)
+            },
+            // 更新后
+            updated() {
+                console.log('--------更新后--------')
+                // 更新虚拟DOM
+                // alert(2)
+                console.log(this.$el)
+                console.log(this.$data)
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 你不要放入style和script -->
+    <div id="demo">
+        <!-- 我们vue控制的范围 -->
+        <!-- 变量 -->
+        <p>{{title}}</p>
+        <p>{{title}}{{title}}</p>
+        <p>{{title}} 123</p>
+        <!-- 字符串 -->
+        <p>{{'title'}}</p>
+        <!-- 错误写法 -->
+        <!-- <p {{title}}>123</p> -->
+
+        <p>{{arr[0]+','+arr[1]}}</p>
+        <p>{{[arr[0],...arr]}}</p>
+        <p>{{title.length+1}}</p>
+
+        <p>{{obj.name}}</p>
+        <p>{{obj.skill[0]}}</p>
+        <p>{{obj['name']}}</p>
+        <p>{{obj['skill'][0]}}</p>
+
+        <!-- 三元表达式 -->
+        <p>{{bool?1:2}}</p>
+        <!-- 二元表达式 -->
+        <p>{{num+7}}</p>
+        <p>{{~~(num+'7')+99}}</p>
+        <!-- 一元表达式 -->
+        <p>{{-num}}</p>
+        <p>{{}}</p>
+    </div>
+    <p>{{title}}</p>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        let vm = new window.Vue({
+            el: "#demo", //element 节点，选择器 一把用id选择器，因为id是唯一的，作用域的含义
+            data: {
+                title: "hello world",
+                arr:['a','b','c'],
+                obj:{
+                    name:'yao',
+                    skill:['ps','js','css']
+                },
+                bool: true,
+                num: 7
+            }
+        });
+
+        var str = `1${0?1:2}2`
+        console.log(str)
+        {{num}}
+        
+    </script>
+</body>
+
+</html>

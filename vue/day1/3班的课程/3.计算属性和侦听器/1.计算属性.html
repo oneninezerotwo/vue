@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 把旧数据变成新的数据 -->
+    <!-- view -->
+    <div id="demo">
+        <p>{{title.length + 1}}</p>
+        <p>{{titltLength}}</p>
+        <p>{{newArr}}</p>
+        <p>{{time}}</p>
+        <p>{{localTime}}</p>
+        <p>{{numCurrency}}</p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 选项
+            // model
+            el: "#demo",
+            data: {
+                title: "Hello World",
+                arr: [{
+                    name: 'yao',
+                }, {
+                    name: 'lin'
+                }, {
+                    name: 'jing'
+                }],
+                time: new Date().getTime(),
+                num: 123
+            },
+            // 计算属性
+            computed: {
+                // title计算属性不允许出现和data里面一样的属性
+                
+                // 即保留了原数据的完整性，也可以根据原数据修改出自己的新数据
+                // titltLength就是用data里面的title计算得到的，形成一个新的data属性值
+                titltLength: function () {
+                    return this.title.length
+                },
+                newArr: function () {
+                    return [this.arr[0], this.arr[1]]
+                },
+                localTime() {
+                    let nS = this.time;
+                    return new Date(parseInt(nS)).toLocaleString().replace(/:\d{1,2}$/, ' ');
+                },
+                numCurrency(){
+                    return `$${this.num}.00`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

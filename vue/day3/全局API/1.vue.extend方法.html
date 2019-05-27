@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 全局定义 全局组件 声明+注册
+        // Vue.component()
+        // 声明组件 还没注册
+        let xheader = Vue.extend({
+            data() {
+                return {
+                    name: "头部组件"
+                }
+            },
+            template: `
+                <div v-text="name"></div>
+            `
+        })
+        new Vue({
+            el: "#demo",
+            template: `
+                <div>
+                    <xheader></xheader>
+                </div>
+            `,
+            data: {
+                name: "yaoS"
+            },
+            components: {
+                // 吧extend的组件引进该容器，并注册使用
+                xheader
+            }
+        })
+    </script>
+</body>
+
+</html>

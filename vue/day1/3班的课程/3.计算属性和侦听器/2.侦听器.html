@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- V -->
+    <div id="demo">
+        <p>{{num}}</p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // M 双向数据绑定
+        // M动 V跟着动
+        // V动 M也跟着动
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                num: 50
+            },
+            // 一旦数据发生变化，watch里面就会被侦听到，并且触发对应的函数
+            // 如果你的数据时会变化，那么你可以使用侦听器来去获取它的改变，从而实现对应的逻辑
+            watch: {
+                // 我侦听num，只要它改变立即触发对应的回调函数
+                num: function (newNum, oldNum) {
+                    console.log(newNum, oldNum)
+                }
+            }
+        })
+        // 不断改变M层的num数据，触发V的视图改变
+        setInterval(() => {
+            vm.num = parseInt(Math.random() * 100 + 1)
+        }, 1000)
+
+    </script>
+</body>
+
+</html>

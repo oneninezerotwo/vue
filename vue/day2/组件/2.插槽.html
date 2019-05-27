@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        Vue.component("xheader", {
+            template: `
+                <div>
+                    <slot></slot>
+                </div>
+            `,
+            // 私有变量
+            data() {
+                return {
+
+                }
+            }
+        })
+        new Vue({
+            el: "#demo",
+            data: {
+                name1:"微信",
+                name2:"通讯录"
+            },
+            // 老爸new Vue容器往两个不同的xheader传递不同的name值
+            template: `
+                <div>
+                    <xheader>
+                        <p>hello world</p>    
+                    </xheader>
+                    <xheader>
+                        <p>abc</p>    
+                    </xheader>
+                </div>
+            `
+        })
+    </script>
+</body>
+
+</html>

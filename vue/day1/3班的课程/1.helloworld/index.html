@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue</title>
+</head>
+<body>
+	<!-- 能实现模块化 -->
+	<div id="demo" class="abc">
+		<!-- Vue控制的范围 -->
+		<!-- 会把data的属性值渲染到这个双大括号里面 -->
+		<p>{{title}}</p>
+	</div>
+	<div class="content">
+		
+	</div>
+	<script type="text/javascript" src="../../js/vue.js"></script>
+	<script>
+		// 当你引入了vue.js会在全局拥有一个Vue全局变量，首字母为大写
+		// 构造函数，实例化一个对象
+		console.log(Vue);
+		var data = {
+			title: 'Yao'
+		}
+		// view视图 model数据
+		var vm = new Vue({
+			// el就是跟document.querySelector的语法是一样的
+			el: ".abc", //element元素节点，Vue应用的作用域，选择器
+			// 选项
+			// 往这里放入data选项
+			data: data
+		});
+		console.log(vm);
+
+		var vm2 = new Vue({
+			// el就是跟document.querySelector的语法是一样的
+			el: ".content", //element元素节点，Vue应用的作用域，选择器
+			// 选项
+			// 往这里放入data选项
+			data: data
+		});
+
+		// function People(name){
+		// 	this.name = name
+		// }
+		// var obj = new People('yao')
+	</script>
+	
+</body>
+</html>

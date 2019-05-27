@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+        <!-- 充当画布 当url为/foo Foo组件将会显示在 router-view标签里面-->
+        <!-- 舞台 -->
+        <router-view></router-view>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <!-- 路由插件是要放在vue.js的后面  提供一个全局的VueRouter变量-->
+    <script src="../../js/vue-router.js"></script>
+    <script>
+        // 1.定义组件
+        // .vue
+        var Foo = Vue.extend({
+            template: `
+                <div>Foo</div>
+            `
+        })
+
+        var Bar = Vue.extend({
+            template: `
+                <div>Bar</div>
+            `
+        })
+
+        var Login = Vue.extend({
+            template: `
+                <div>
+                    <input />
+                    <input />
+                    <button>登陆</button>
+                </div>
+            `
+        })
+        // 2. 定义路由
+        var routes = [{
+            // 当url为/foo的时候，页面加载Foo组件 注册组件
+            path: '/foo', component: Foo,
+        }, {
+            // 当url为/foo的时候，页面加载Foo组件
+            path: '/bar', component: Bar,
+        }, {
+            path: '/login', component: Login,
+        }]
+        // 3. 创建 router 实例，然后传 `routes` 配置
+        const router = new VueRouter({
+            routes // (缩写) 相当于 routes: routes
+        })
+        // 路由守卫
+        // 每一次进路由之前，都会进入该回调函数里面执行一次逻辑
+        // 路由守门人
+        router.beforeEach((to, from, next) => {
+            // to 下一层路由 将要进去的路由
+            // from 上一层路由 将要离开的路由
+            //  next 是一个函数 必须要执行next() 才可以进去该路由
+            console.log(to, from, next)
+            // 必须有token才可以进路由
+            // ajax token的正确性
+
+            if (localStorage.getItem('token')) {
+                // 执行它才可以进to的路由
+                next();
+            } else {
+                if (to.path === '/login') {
+                    next();
+                } else {
+                    // 如果没有token默认调到登陆页
+                    router.push('/login')
+                    // 做页面跳转，或者return
+                    // return;
+                }
+            }
+        })
+        // 4. 创建和挂载根实例。
+        const app = new Vue({
+            el: "#demo",
+            // 往vue容器里面注入路由服务
+            router
+        })
+    </script>
+</body>
+
+</html>

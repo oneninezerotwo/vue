@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p style="color:red;">{{title}}</p>
+        <!-- 里面要驼峰写法 -->
+        <p v-bind:style="{
+            color,
+            fontSize: `${num}px`
+        }">{{title}}</p>
+        <!-- 简写为: -->
+        <p :style="{
+            color,
+            fontSize: `${num}px`
+        }">{{title}}</p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World",
+                num: 14,
+                color: 'red'
+            }
+        })
+        setInterval(() => {
+            vm.num += 1;
+            console.log(Math.floor(Math.random( ) * 0xFFFFFF).toString(16));
+            vm.color = `#${Math.floor(Math.random( ) * 0xFFFFFF).toString(16)}`;
+        }, 1000)
+    </script>
+</body>
+
+</html>

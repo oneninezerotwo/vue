@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View 作用域 -->
+    <div id="demo">
+        <!-- {{name}}编译为yao -->
+        <p>姓名：{{name}}</p>
+        <p>年龄：{{age}}</p>
+    </div>
+
+    
+    <!-- 这个是在作用域之外，将不会被编译 -->
+    {{name}}
+    <!-- 引入vue.js -->
+    <script src="../js/vue.js"></script>
+    <script>
+        // Model数据模型
+        console.log(Vue);
+        // Vue其实就是构造函数
+        let vm = new Vue({
+            // el element选择器，作用域 document.querySelector()
+            el: "#demo",
+            // 数据模型 整个作用域下面的数据都会用到里面属性值
+            data: {
+                name: "yao",
+                age:19,
+                age:19,
+            }
+        })
+    </script>
+</body>
+
+</html>

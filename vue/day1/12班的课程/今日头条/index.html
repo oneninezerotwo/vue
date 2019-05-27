@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <header id="indexHeader" class="index--toutiaoribao">
+            <div class="top_bar">
+                <div class="abs_m"><a href="#" class="refresh_title btn"></a>
+                    <div class="refreshBtn-container "><i class="refresh_btn"></i></div>
+                </div>
+                <div class="abs_l"><a href="javascript:;" class="msg-box">
+                        <div class="circle"></div>
+                    </a></div>
+                <div class="abs_r"><a href="https://m.toutiao.com/search/?need_open_window=1" class="btn search"></a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- 导航栏 -->
+    <div id="nav">
+        <div class="top_menu_bar ">
+            <div class="top_menu_more">
+                <div class="list_shadow"></div><a class="more_btn" href="javascript:void(0)"><span
+                        class="cross"></span></a>
+            </div>
+            <!-- @click :class  -->
+            <div class="top_menu_list">
+                <a @click="selectChannel(index)" :test="channelIndex" :test2="index" v-for="(channel ,index) in channels" href="javascript:void(0)"
+                    :data-channel="channel.channel" :data-query="`channel=${channel.channel}`" :class="{
+                        'cur': channelIndex == index
+                    }" class="btn"
+                    v-text="channel.title"></a>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="main">
+        <content id="pageletListContent" class="feed-list-container">
+            <!-- react-empty: 33 -->
+            <div class="list_content" data-pull-fresh="1">
+                <section class="has_action" data-hot-time="1554715840" data-group-id="6677353375656313351"
+                    data-item-id="6677353375656313351" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_politics" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">推动思政课改革创新 习近平强调这“八个统一”</h3>
+                            <div class="item_info">
+                                <div><span class="stick_label space">置顶</span><!-- react-text: 48 -->0
+                                    <!-- /react-text --><span class="src space">央视网新闻</span><span class="cmt space">
+                                        <!-- react-text: 51 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 52 -->515
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:30">刚刚</span><span data-id="6677353375656313351"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715807" data-group-id="6677144201081127435"
+                    data-item-id="6677144201081127435" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="general_positive_video"
+                        class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">习近平的足迹丨永铭英雄志 奋斗新时代</h3>
+                            <div class="item_info">
+                                <div><span class="stick_label space">置顶</span><!-- react-text: 62 -->0
+                                    <!-- /react-text --><span class="src space">新华社客户端</span><span class="cmt space">
+                                        <!-- react-text: 65 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 66 -->502
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:30">刚刚</span><span data-id="6677144201081127435"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715774" data-group-id="6675446325170930189"
+                    data-item-id="6675446325170930189" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_media" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">“该不该洗牙”也上热搜？亿万人关注的事，必须科普下</h3>
+                            <div class="list_image">
+                                <ul class="clearfix">
+                                    <li class="list_img_holder"><img
+                                            src="https://p3.pstatp.com/list/pgc-image/RMBFMSqAaSgWNh"></li>
+                                    <li class="list_img_holder"><img
+                                            src="https://p3.pstatp.com/list/pgc-image/RMBFMT52DQTve5"></li>
+                                    <li class="list_img_holder"><img
+                                            src="https://p3.pstatp.com/list/pgc-image/RMC55ZFBWOHSYK"></li>
+                                </ul>
+                            </div>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 83 -->0
+                                    <!-- /react-text --><span class="src space">工人日报</span><span class="cmt space">
+                                        <!-- react-text: 86 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 87 -->59
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:29">1分钟前</span><span data-id="6675446325170930189"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715741" data-group-id="6646982450763268360"
+                    data-item-id="6646982450763268360" data-format="0">
+                    <i class="icon_ad">
+                        <span data-show="show"
+                            ad-log-extra="{&quot;ad_price&quot;:&quot;XKsUwQACcVBcqxTBAAJxUJokTSNMGBWdmrNCLg&quot;,&quot;convert_component_suspend&quot;:0,&quot;convert_id&quot;:0,&quot;external_action&quot;:0,&quot;orit&quot;:1,&quot;req_id&quot;:&quot;15415048554715840852&quot;,&quot;rit&quot;:1}"
+                            data-track="" ad-id="1622784278973485" ad-tag="embeded_ad" ad-label="广告">
+                        </span>
+                    </i>
+
+
+                    <a href="/item/6646982450763268360/" class="article_link clearfix "
+                        data-action-label="click_headline" data-tag="ad.platform.site">
+
+
+
+                        <h3 class="dotdot line3 ">
+                            健身和不健身的妹子差别在哪，你怕了吗？
+                        </h3>
+
+
+                        <div class="list_image">
+                            <ul class="clearfix">
+
+                                <li class="list_img_holder">
+                                    <img
+                                        src="https://p3.pstatp.com/list/web.business.image/201901045d0d19073386511f4e7b9aff">
+                                </li>
+
+                                <li class="list_img_holder">
+                                    <img
+                                        src="https://p3.pstatp.com/list/web.business.image/201901045d0d172565efcbf14fe689c6">
+                                </li>
+
+                                <li class="list_img_holder">
+                                    <img
+                                        src="https://p3.pstatp.com/list/web.business.image/201901045d0df66ed430e5c04a9e88b4">
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+
+                        <div class="item_info">
+
+
+
+
+
+
+
+                            <span class="gg_label space">广告</span>
+
+
+
+                            <span class="src space">开心消消乐</span>
+
+                            <span class="cmt space">评论 0</span>
+
+
+                            <span class="time" title="2019-04-08 17:29">1分钟前</span>
+
+
+                            <span data-id="6646982450763268360" class="dislike-news  fr">
+                            </span>
+                        </div>
+
+
+                    </a>
+                </section>
+                <section class="has_action" data-hot-time="1554715708" data-group-id="6675832365522092558"
+                    data-item-id="6675832365522092558" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="science_all" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">当年，宇航员在月球扔了96包屎……现在，科学家想去把它们捡回来</h3>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 97 -->0
+                                    <!-- /react-text --><span class="src space">中国经济网</span><span class="cmt space">
+                                        <!-- react-text: 100 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 101 -->2755
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:28">2分钟前</span><span data-id="6675832365522092558"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715675" data-group-id="6677101807019229709"
+                    data-item-id="6677101807019229709" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_society" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">凉山扑火英雄烈士妈妈：让我最后一次摸下我的儿子</h3>
+                            <div class="list_image">
+                                <ul class="clearfix">
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                </ul>
+                            </div>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 111 -->0
+                                    <!-- /react-text --><span class="src space">解放军新闻传播中心融媒体</span><span
+                                        class="cmt space">
+                                        <!-- react-text: 114 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 115 -->504
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:27">3分钟前</span><span data-id="6677101807019229709"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="middle_mode has_action" data-hot-time="1554715643" data-group-id="6677113540492395015"
+                    data-item-id="6677113540492395015" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_politics_general"
+                        class="article_link clearfix ">
+                        <div class="item_detail desc">
+                            <h3 class="dotdot line3 image-margin-right">毛新宇少将全家再回韶山</h3>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 133 -->0
+                                    <!-- /react-text --><span class="src space">新京报</span><span class="cmt space">
+                                        <!-- react-text: 136 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 137 -->17190
+                                        <!-- /react-text --></span><span data-id="6677113540492395015"
+                                        class="dislike-news fr mid-space"></span></div>
+                            </div>
+                        </div>
+                        <div class="list_img_holder"><img></div>
+                    </a></section>
+                <section class="middle_mode has_action" data-hot-time="1554715610" data-group-id="6677443602655740420"
+                    data-item-id="6677443602655740420" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_finance" class="article_link clearfix ">
+                        <div class="item_detail desc">
+                            <h3 class="dotdot line3 image-margin-right">银行员工私自改密码 将客户钱款2331万据为己有</h3>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 154 -->0
+                                    <!-- /react-text --><span class="src space">中国经济网</span><span class="cmt space">
+                                        <!-- react-text: 157 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 158 -->1
+                                        <!-- /react-text --></span><span data-id="6677443602655740420"
+                                        class="dislike-news fr mid-space"></span></div>
+                            </div>
+                        </div>
+                        <div class="list_img_holder"><img></div>
+                    </a></section>
+                <section class="middle_mode has_action" data-hot-time="1554715577" data-group-id="6673386193884807687"
+                    data-item-id="6673386193884807687" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_health" class="article_link clearfix ">
+                        <div class="item_detail desc">
+                            <h3 class="dotdot line3 image-margin-right">咽喉癌，咽炎怎么区分？这五个预警信号要记牢</h3>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 186 -->0
+                                    <!-- /react-text --><span class="src space">健康报</span><span class="cmt space">
+                                        <!-- react-text: 189 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 190 -->32
+                                        <!-- /react-text --></span><span data-id="6673386193884807687"
+                                        class="dislike-news fr mid-space"></span></div>
+                            </div>
+                        </div>
+                        <div class="list_img_holder"><img></div>
+                    </a></section>
+                <section class="middle_mode has_action" data-hot-time="1554715544" data-group-id="6675933341725753869"
+                    data-item-id="6675933341725753869" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_entertainment" class="article_link clearfix ">
+                        <div class="item_detail desc">
+                            <h3 class="dotdot line3 image-margin-right">嘉宾相互爆料，《最强大脑》正在用最狗血的方式走向衰落</h3>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 200 -->0
+                                    <!-- /react-text --><span class="src space">新京报</span><span class="cmt space">
+                                        <!-- react-text: 203 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 204 -->369
+                                        <!-- /react-text --></span><span data-id="6675933341725753869"
+                                        class="dislike-news fr mid-space"></span></div>
+                            </div>
+                        </div>
+                        <div class="list_img_holder"><img></div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715511" data-group-id="6675190333325705742"
+                    data-item-id="6675190333325705742" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_media" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">泪奔 | 牺牲消防员最后的朋友圈！看过的人都哭了······</h3>
+                            <div class="list_image">
+                                <ul class="clearfix">
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                </ul>
+                            </div>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 222 -->0
+                                    <!-- /react-text --><span class="src space">工人日报</span><span class="cmt space">
+                                        <!-- react-text: 225 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 226 -->4600
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:25">5分钟前</span><span data-id="6675190333325705742"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715470" data-group-id="6672340604287975949"
+                    data-item-id="6672340604287975949" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_society" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">被初中地理老师欺骗多年，各省地图到底像什么？</h3>
+                            <div class="list_image">
+                                <ul class="clearfix">
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                </ul>
+                            </div>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 243 -->0
+                                    <!-- /react-text --><span class="src space">航空知识</span><span class="cmt space">
+                                        <!-- react-text: 246 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 247 -->9762
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:24">6分钟前</span><span data-id="6672340604287975949"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715466" data-group-id="6667805268132233484"
+                    data-item-id="6667805268132233484" data-format="0">
+                    <i class="icon_ad">
+                        <span data-show="show"
+                            ad-log-extra="{&quot;ad_price&quot;:&quot;XKsTV__yXEhcqxNX__JcSJzyrQpznOJlZtpf5g&quot;,&quot;convert_component_suspend&quot;:0,&quot;convert_id&quot;:0,&quot;external_action&quot;:0,&quot;orit&quot;:1,&quot;req_id&quot;:&quot;15191084554715479019&quot;,&quot;rit&quot;:1}"
+                            data-track="" ad-id="1627879754992663" ad-tag="embeded_ad" ad-label="广告">
+                        </span>
+                    </i>
+
+
+                    <a href="/item/6667805268132233484/" class="article_link clearfix "
+                        data-action-label="click_headline" data-tag="ad.platform.site">
+
+
+
+                        <h3 class="dotdot line3 ">
+                            近日有奇怪三人频现某休息厅玩手机，监控拍下了真相...
+                        </h3>
+
+
+                        <div class="list_image">
+                            <ul class="clearfix">
+
+                                <li class="list_img_holder">
+                                    <img
+                                        src="https://p3.pstatp.com/list/web.business.image/201903135d0d312ef89931f841238ac6">
+                                </li>
+
+                                <li class="list_img_holder">
+                                    <img
+                                        src="https://p3.pstatp.com/list/web.business.image/201903135d0dce11d60b64104592bdf6">
+                                </li>
+
+                                <li class="list_img_holder">
+                                    <img
+                                        src="https://p3.pstatp.com/list/web.business.image/201903135d0d313f5934b8af4d4bb027">
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+
+                        <div class="item_info">
+
+
+
+
+
+
+
+                            <span class="gg_label space">广告</span>
+
+
+
+                            <span class="src space">开心消消乐</span>
+
+                            <span class="cmt space">评论 0</span>
+
+
+                            <span class="time" title="2019-04-08 17:24">6分钟前</span>
+
+
+                            <span data-id="6667805268132233484" class="dislike-news  fr">
+                            </span>
+                        </div>
+
+
+                    </a>
+                </section>
+                <section class="middle_mode has_action" data-hot-time="1554715462" data-group-id="6676081358567113229"
+                    data-item-id="6676081358567113229" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_entertainment" class="article_link clearfix ">
+                        <div class="item_detail desc">
+                            <h3 class="dotdot line3 image-margin-right">郑少秋是不是渣男？看看沈殿霞后来对他的评价就知道了</h3>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 257 -->0
+                                    <!-- /react-text --><span class="src space">正史也疯狂</span><span class="cmt space">
+                                        <!-- react-text: 260 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 261 -->711
+                                        <!-- /react-text --></span><span data-id="6676081358567113229"
+                                        class="dislike-news fr mid-space"></span></div>
+                            </div>
+                        </div>
+                        <div class="list_img_holder"><img></div>
+                    </a></section>
+                <section class="middle_mode has_action" data-hot-time="1554715458" data-group-id="6674764219428110852"
+                    data-item-id="6674764219428110852" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_fitness" class="article_link clearfix ">
+                        <div class="item_detail desc">
+                            <h3 class="dotdot line3 image-margin-right">吃糖和吃油，哪个更长胖？英国一对双胞胎亲身实验，结果违反常识</h3>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 271 -->0
+                                    <!-- /react-text --><span class="src space">沪江英语</span><span class="cmt space">
+                                        <!-- react-text: 274 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 275 -->3797
+                                        <!-- /react-text --></span><span data-id="6674764219428110852"
+                                        class="dislike-news fr mid-space"></span></div>
+                            </div>
+                        </div>
+                        <div class="list_img_holder"><img></div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715454" data-group-id="6676293526868722179"
+                    data-item-id="6676293526868722179" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_pet" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">墨尔本又开始投毒杀兔了！澳大利亚的战斗机，轰炸100亿只兔子！</h3>
+                            <div class="list_image">
+                                <ul class="clearfix">
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                </ul>
+                            </div>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 293 -->0
+                                    <!-- /react-text --><span class="src space">华舆</span><span class="cmt space">
+                                        <!-- react-text: 296 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 297 -->14220
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:24">6分钟前</span><span data-id="6676293526868722179"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+                <section class="has_action" data-hot-time="1554715450" data-group-id="6677002404254188043"
+                    data-item-id="6677002404254188043" data-format="0"><a href="javascript: void(0)"
+                        data-action-label="click_headline" data-tag="news_tech" class="article_link clearfix ">
+                        <div class="item_detail">
+                            <h3 class="dotdot line3">苹果的 5G 迷局</h3>
+                            <div class="list_image">
+                                <ul class="clearfix">
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                    <li class="list_img_holder"><img></li>
+                                </ul>
+                            </div>
+                            <div class="item_info">
+                                <div>
+                                    <!-- react-text: 314 -->0
+                                    <!-- /react-text --><span class="src space">雷锋网</span><span class="cmt space">
+                                        <!-- react-text: 317 -->评论
+                                        <!-- /react-text -->
+                                        <!-- react-text: 318 -->69
+                                        <!-- /react-text --></span><span class="time"
+                                        title="2019-04-08 17:24">6分钟前</span><span data-id="6677002404254188043"
+                                        class="dislike-news fr"></span></div>
+                            </div>
+                        </div>
+                    </a></section>
+            </div>
+            <div class="list_bottom">
+                <section class="loadmoretip"><a href="#">加载中...</a></section>
+            </div>
+        </content>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        let header = new Vue({
+            el: "#header",
+            data: {}
+        })
+    </script>
+    <script>
+        let nav = new Vue({
+            el: "#nav",
+            data: {
+                name: "yao",
+                channels: [{
+                    title: "推荐",
+                    channel: "__all__"
+                }, {
+                    title: "视频",
+                    channel: "video"
+                }, {
+                    title: "热点",
+                    channel: "news_hot"
+                }, {
+                    title: "社会",
+                    channel: "news_society"
+                }, {
+                    title: "娱乐",
+                    channel: "news_entertainment"
+                }, {
+                    title: "军事",
+                    channel: "news_military"
+                }, {
+                    title: "科技",
+                    channel: "news_tech"
+                }, {
+                    title: "汽车",
+                    channel: "news_car"
+                }, {
+                    title: "房产",
+                    channel: "news_house"
+                }, {
+                    title: "yao",
+                    channel: "yao"
+                }],
+                // 频道默认打色值
+                channelIndex: 0
+            },
+            methods: {
+                selectChannel(index) {
+                    console.log(index)
+                    this.channelIndex = index;
+                }
+            }
+        })
+    </script>
+    <script>
+        let main = new Vue({
+            el: "#main",
+            data: {
+                name: "yao"
+            }
+        })
+    </script>
+</body>
+
+</html>

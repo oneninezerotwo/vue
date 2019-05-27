@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 视图 View -->
+	<div id="demo">
+		<p>{{title}}</p>
+		<p>{{skill}}</p>
+		<!-- 支持你可以任何拼接 -->
+		<p>{{skill}}和{{title}}</p>
+		<p>{{skill}}</p>
+		<p>{{bool}}</p>
+		<!-- 支持三元表达式 -->
+		<p>{{bool?1:2}}</p>
+		<!-- 获取数组 -->
+		<p>{{arr[0]}}</p>
+
+		<p>{{~~(num+'99')+1}}</p>
+		<p>{{~~(num+'99')+1}}</p>
+
+		<p>{{obj.skill[1] + ',' + obj['skill'][0]}}</p>
+		<p>{{2-num}}</p>
+		<!-- =支持函数表达式 -->
+		<p>{{ing('see')}}</p>
+	</div>
+	<p>{{skill}}</p>
+	<script type="text/javascript" src="../../js/vue.js"></script>
+	<script>
+		// Vue负责把V和M层联动起来，M提供数据，V负责渲染视图
+		// Vue帮你用一些选项控制它的一些特性，el控制作用域，el尽量用id选择器，id是唯一
+		// 把数据封装和规划好，配合两个大括号，把它带到视图层渲染 vm模式的作用
+		var vm = new Vue({
+			// 控制那个作用域，那个作用域就会有对应的数据渲染
+			// 单目，双目和三目,多目运算
+			// JS所有类型的渲染
+			el: '#demo',
+			// 数据 Model
+			data:{
+				title: 'yao',
+				skill: 'ps',
+				bool: true,
+				arr: ['a','b','c'],
+				num: 7,
+				obj:{
+					name:'lemon',
+					skill:['ps','css','js']
+				}
+			},
+			// 封装方法
+			methods:{
+				ing(str){
+					console.log(this.$data.title)
+					console.log(this.title)
+					return str + 'ing' + this.title
+				}
+			}
+		})
+		// vm相当于里面的this
+		console.log(vm.$data.title)
+		console.log(vm.title)
+	</script>
+</body>
+</html>

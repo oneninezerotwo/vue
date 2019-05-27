@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <!-- CSS在上面 -->
+    <div id="demo">
+        <!-- {{}}  vue的语法-->
+        <p style="color:red">1.v-text或者{{}}</p>
+        <!-- $().text() -->
+        <p v-text="'姓名:'+name"></p>
+        <p>{{'姓名:'+name}}</p>
+
+        <p style="color:red">2.v-html</p>
+        <!-- $().html() -->
+        <div v-html="html"></div>
+
+        <p style="color:red">3.v-show</p>
+        <!-- $().show()和$().hide() -->
+        <div v-show="bool">显示或者隐藏</div>
+        <!-- show是操控display属性值来达到隐藏和显示的效果 -->
+
+        <p style="color:red">4.v-if</p>
+        <!-- $().remove()和$().append() -->
+        <div v-if="num>2">增加或者删除1</div>
+        <!-- if是控制节点的增加或者删除 -->
+        <div v-else-if="num<2">增加或者删除2</div>
+        <div v-else>增加或者删除3</div>
+
+        <p style="color:red">5.v-for</p>
+        <!-- $().remove()和$().append() -->
+        <!-- for in -->
+        <!-- arr就是需要遍历的数组，a就是遍历的每个单项 -->
+        <!-- arr.map().join() $.html() -->
+        <div v-for="a in arr" v-text="`姓名为：${a.name} 年龄为：${a.age}`"></div>
+
+        <ul>
+            <li v-for="a in arr" v-text="`姓名为：${a.name} 年龄为：${a.age}`"></li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="a in arr">
+                    <td v-text="a.name"></td>
+                    <td v-text="a.age">年龄</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <select>
+            <option v-for="a in arr" v-bind:value="a.age" v-text="a.name"></option>
+        </select>
+
+        <p style="color:red">6.v-bind</p>
+        <p name="name">name</p>
+        <!-- 就是编译属性值 -->
+        <p v-bind:name="name">name</p>
+        <!-- 可以简写为： -->
+        <p :name="name">name</p>
+
+    </div>
+    <!-- JS在下面 -->
+    <script src="../js/vue.js"></script>
+    <script>
+        // $().xxx
+        // 节点驱动
+        // 先定义数据，再配合指令，实现页面效果
+        // 数据驱动
+        // Model
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "yao",
+                html: "<p>123<span>456</span>789</p>",
+                bool: true,
+                num: 2,
+                arr: [{
+                    name: "yao",
+                    age: 18
+                }, {
+                    name: "lin",
+                    age: 17
+                }, {
+                    name: "jing",
+                    age: 19
+                }]
+            }
+        })
+    </script>
+</body>
+
+</html>

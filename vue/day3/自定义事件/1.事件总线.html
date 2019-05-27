@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 事件总线，自定义事件
+        let vm = new Vue();
+        Vue.component("xheader", {
+            template: `
+                <div>
+                    <input v-model="name" />
+                    <p v-text="name"></p>
+                    <button @click="toBrother">触发to-brother事件</button>
+                    <hr />
+                </div>
+            `,
+            data() {
+                return {
+                    name: "头部组件"
+                }
+            },
+            methods: {
+                toBrother() {
+                    // 触发事件 第一个参数放需要触发的事件名字，第二参数需要传递的参数
+                    vm.$emit('to-brother', {
+                        name: this.name,
+                        skill: ['ps', 'js', 'css']
+                    })
+                }
+            }
+        })
+
+        Vue.component("xfooter", {
+            template: `
+                <div>
+                    <p v-text="name"></p>
+                </div>
+            `,
+            data() {
+                return {
+                    name: "底部组件"
+                }
+            },
+            // 创建之后
+            created() {
+                // 监听外部的事件触发 第一个事件名字，第二个参数放回调函数，如果触发事件被监听到，那么触发该回调函数
+                vm.$on('to-brother', (data) => {
+                    console.log(data)
+                    this.name = data.name;
+                })
+            }
+        })
+
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "yao",
+            },
+            template: `
+                <div>
+                    <xheader></xheader>
+                    <xfooter></xfooter>
+                </div>
+            `,
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

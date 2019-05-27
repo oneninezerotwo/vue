@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+        <!-- 充当画布 当url为/foo Foo组件将会显示在 router-view标签里面-->
+        <!-- 舞台 -->
+        <router-view></router-view>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <!-- 路由插件是要放在vue.js的后面  提供一个全局的VueRouter变量-->
+    <script src="../../js/vue-router.js"></script>
+    <script>
+        // 1.定义组件
+        // .vue
+        var Foo = Vue.extend({
+            // 路由router-view组件，把数据传给Foo子组件
+            props: ['skill', 'fn'],
+            template: `
+                <div>Foo</div>
+            `
+        })
+
+        var Bar = Vue.extend({
+            template: `
+                <div>Bar</div>
+            `
+        })
+        // 2. 定义路由
+        var routes = [{
+            // 当url为/foo的时候，页面加载Foo组件 注册组件
+            path: '/foo',
+            component: Foo,
+            // 别名 有两个进路由的路径
+            alias: '/abc',
+            props: {
+                default: true,
+                sidebar: false,
+                skill: ['ps', 'js', 'css'],
+                fn(a, b) {
+                    return a + b
+                }
+            },
+            meta: {
+                name: 'ahskdusahdk'
+            }
+        }, {
+            // 当url为/foo的时候，页面加载Foo组件
+            path: '/bar',
+            component: Bar,
+        }, {
+            // 重定向 如果路由为/的话，默认跳转到/foo路由
+            path: '/', redirect: '/foo'
+        }]
+        // 3. 创建 router 实例，然后传 `routes` 配置
+        const router = new VueRouter({
+            routes // (缩写) 相当于 routes: routes
+        })
+        // 4. 创建和挂载根实例。
+        const app = new Vue({
+            el: "#demo",
+            // 往vue容器里面注入路由服务
+            router
+        })
+
+    </script>
+</body>
+
+</html>

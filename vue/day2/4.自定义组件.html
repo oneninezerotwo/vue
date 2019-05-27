@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <x-header style="color:red"></x-header>
+        <abc></abc>
+        <abc></abc>
+        <abc></abc>
+        <abc></abc>
+        <k12></k12>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#demo",
+            data: {},
+            components: {
+                // 组件是不能取html内置的标签，div，p，select  Abc a-bc  DIV
+                abc: {
+                    // 里面可以放选项
+                    // 组件不需要el
+                    // 组件里面的data必须是函数
+                    // 因为组件是独立的作用域
+                    // 在复用的时候，只能自己影响自己
+                    data() {
+                        return {
+                            name: "第一个组件"
+                        }
+                    },
+                    // 只能有一个根节点
+                    template: `
+                        <div>
+                            <input v-model="name" />
+                            <div v-text="name"></div>
+                        </div>
+                    `,
+                    components:{
+                        
+                    }
+                },
+                'x-header': {
+                    template: `
+                        <div>头部组件</div>
+                    `
+                },
+                'k12':{
+                    template: `
+                        <div>k12</div>
+                    `
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="demo">
+        <p v-text="name"></p>
+        <!-- v-on:click会去寻找methods里面的test方法并绑定到该标签上 -->
+        <button v-on:click="test()">lin点击事件</button>
+        <!-- 简写 @相当于v-on:如果不传参数的话可以省略括号 -->
+        <button @click="test">lin点击事件（简写）</button>
+
+        <button @click="test('lemon')">lemon点击事件</button>
+        <!-- $event事件对象 事件冒泡 事件委托 -->
+        <button @click="test('jing',$event)">事件对象</button>
+
+        <!-- 
+            onchange @change
+            onkeyup @keyup
+            onmousedown @mousedown
+        -->
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // Model
+        // 数据驱动
+        let vm = new Vue({
+            el: "#demo",
+            data: {
+                name: "yao",
+
+            },
+            // 存放方法
+            methods: {
+                test(name, e = null) {
+                    console.log(e ? e.target : e)
+                    // this指向 vm
+                    console.log("你执行了点击", this);
+                    this.name = name ? name : "lin"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

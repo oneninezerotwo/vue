@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 2.6版本新增的写法 -->
+    <div id="demo"></div>
+    <div id="demo2"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 公有变量
+        const state = Vue.observable({
+            count: 0,
+            name: "yao"
+        });
+        new Vue({
+            el: "#demo",
+            data: {
+                // 私有变量
+                skill:['ps','js']
+            },
+            template:`
+                <div>
+                    <p v-text="state.name"></p>
+                    <button @click="changeName">ok</button>
+                    <hr />
+                </div>
+            `,
+            computed:{
+                // 公有变量变为局部变量
+                state(){
+                    return state
+                }
+            },
+            methods:{
+                changeName(){
+                    state.name = 'lin'
+                }
+            }
+        })
+
+        new Vue({
+            el: "#demo2",
+            data: {
+                // 私有变量
+            },
+            template:`
+                <div>
+                    <p v-text="state.name"></p>
+                </div>
+            `,
+            computed:{
+                // 公有变量变为局部变量
+                state(){
+                    return state
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

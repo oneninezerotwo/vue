@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- v-指令 -->
+    <div id="demo">
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            // 选项
+            el: "#demo",
+            props: [],
+            template: `
+                <div v-text="name"></div>
+            `,
+            // VDOM
+            // render(createElement) {
+            //     // 三个参数 (1)标签名字 (2)属性 (3)值
+            //     return createElement('div', {
+            //         style: {
+            //             color: 'red',
+            //             fontSize: '60px'
+            //         }
+            //     }, [this.text])
+            // },
+
+            // let html = `vdom`;
+            // $().html(html);
+            // 计算属性
+            computed: {
+                // 如果computed定义了这个值，那么data就不能定义了
+                name() {
+                    let firstName = 'hello';
+                    // 计算出来得到的一个值
+                    return firstName + this.lastName
+                }
+            },
+
+            // 简单数据
+            data: {
+                lastName: 'world'
+                // text: 'hello world'
+            },
+            watch: {}
+        })
+    </script>
+</body>
+
+</html>

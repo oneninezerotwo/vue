@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p v-text="name"></p>
+    </div>
+    <script>
+
+        // 构造函数
+        function Vue(option) {
+            // 作用域
+            let el = this.$el = document.querySelector(option.el);
+            // 数据模型 监听 set和get
+            let data = this.$data = option.data;
+            // 遍历data对象
+            for (let d in data) {
+                console.log(d, data[d]);
+                this.proxyData(d);
+            }
+
+        }
+        // 劫持所有data里面所有数据
+        Vue.prototype.proxyData = function (key) {
+            console.log(this);
+            Object.defineProperty(this, key, {
+                set(newValue) {
+                },
+                get() {
+                }
+            })
+        }
+
+        // Model
+        let vm = new Vue({
+            el: "#demo",
+            data: {
+                name: "lin",
+                age: 18
+            }
+        })
+
+        console.log(vm);
+    </script>
+</body>
+
+</html>

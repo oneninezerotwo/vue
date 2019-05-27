@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p>1.自定义过滤器</p>
+        <!-- 只能用在双大括号{{}} v-bind -->
+        <p>{{str|ed}}</p>
+        <p v-text="ed(str)"></p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 全局自定义过滤器
+        Vue.filter('ed', (input) => {
+            let output = input + 'ed';
+            return output;
+        })
+        new Vue({
+            el: "#demo",
+            data: {
+                str: "see"
+            },
+            // 局部自定义过滤器
+            filters: {
+                // ed(input) {
+                //     let output = input + 'ed';
+                //     return output;
+                // }
+            },
+            methods: {
+                ed(input) {
+                    let output = input + 'ed';
+                    return output;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

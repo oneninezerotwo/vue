@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/vuex.js"></script>
+    <script>
+        // 初始化仓库 存放公有变量
+        const store = new Vuex.Store({
+            // 仓库存值的地方
+            state: {
+                count: 0,
+                author: 'yao'
+            },
+            // 封装好获取值的方法
+            getters: {
+                getAuthor(state) {
+                    return state.author
+                },
+                getCount(state) {
+                    return state.count
+                }
+            }
+        })
+        new Vue({
+            el: "#demo",
+            data: {
+                // 私有变量
+                name: "yao"
+            },
+            // 注入容器里面
+            store,
+            created() {
+                console.log(this)
+                // 往仓库取值
+                // console.log(this.$store.state.count)
+                // console.log(this.$store.state.author)
+                let author = this.$store.getters.getAuthor
+                console.log(author)
+                let count = this.$store.getters.getCount
+                console.log(count)
+                // 规范的写法，需要调用getters方法来获取state里面的值
+            }
+        })
+    </script>
+</body>
+
+</html>

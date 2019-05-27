@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#demo",
+            data:{
+                name:"yaoS"
+            },
+            // 创建前
+            beforeCreate(){
+                console.log('--------创建前--------')
+                // 创建前 数据和模板都没有准备好
+                console.log(this.$el)
+                console.log(this.$data)
+            },
+            // 创建后
+            created(){
+                console.log('--------创建后--------')
+                // 创建后 数据准备好了，模板没准备好
+                console.log(this.$el)
+                console.log(this.$data)
+            }
+        })
+    </script>
+</body>
+</html>

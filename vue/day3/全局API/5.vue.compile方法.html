@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 把html解构转化对象
+        // 
+        // let obj = {
+        //     'div',
+        //     {
+                
+        //     },
+        //     [
+        //         {
+        //             'div',
+        //             {
+        //                 'v-text':"message"
+        //             }
+        //         },
+        //         {
+        //             'button',
+        //             {
+        //                 '@click'
+        //             }
+        //         }
+        //     ]
+        // }
+
+        // 虚拟DOM操作字符串是很复杂的，会把字符串转化为对象，然后操作对象，再把对象转为真实DOM
+        var res = Vue.compile(`
+            <div>
+                <div v-text="message"></div>
+                <button @click="test">ok</button>
+            </div>
+        `);
+        console.log(res);
+        new Vue({
+            el: "#demo",
+            created() {
+            },
+            // template: `
+            // <div>
+            //     <div v-text="message"></div>
+            //     <button @click="test">ok</button>
+            // </div>
+            // `,
+            render: res.render,
+            data: {
+                message: "没有更新"
+            },
+            // 挂载后
+            mounted() {
+            },
+            methods: {
+                test() {
+                    console.log(2)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

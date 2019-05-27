@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- keep alive简单的选项卡，但是复杂的选项卡不建议用，路由 -->
+    <div id="demo"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        Vue.component("xheader", {
+            template: `
+                <div>
+                    <input v-model="name" />
+                    <p v-text="name"></p>
+                </div>
+            `,
+            data() {
+                return {
+                    name: "头部组件"
+                }
+            },
+            // keep-alive 组件激活时调用。
+            activated(){
+                console.log('----------keep-alive 组件激活时调用----------')
+            },
+            // keep-alive 组件停用时调用。
+            deactivated(){
+                console.log('----------keep-alive 组件停用时调用----------')
+            }
+        })
+
+        Vue.component("xfooter", {
+            template: `
+                <div>
+                    <input v-model="name" />
+                    <p v-text="name"></p>
+                </div>
+            `,
+            data() {
+                return {
+                    name: "底部组件"
+                }
+            }
+        })
+        new Vue({
+            el: "#demo",
+            data: {
+                name: "xheader"
+            },
+            // 老爸new Vue容器往两个不同的xheader传递不同的name值
+            template: `
+                <div>
+                    <keep-alive>
+                        <component :is="name"></component>
+                    </keep-alive>
+                    <button @click="toggleCp">切换组件</button>
+                </div>
+            `,
+            methods: {
+                toggleCp() {
+                    if (this.name == 'xheader') {
+                        this.name = 'xfooter'
+                    } else {
+                        this.name = 'xheader'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

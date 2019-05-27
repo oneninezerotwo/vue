@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <div id="demo2"></div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 仓库
+        // 公有变量
+        const state = Vue.observable({
+            count: 0,
+            name: 'yao'
+        })
+        new Vue({
+            el: "#demo",
+            data: {
+                // 私有变量
+                message: "没有更新"
+            },
+            // template: `
+            //     <div>
+            //         <div>${state.name}</div>
+            //         <button @click="changeName">OK</button>
+            //         <hr />
+            //     </div>
+            // `,
+            render(createElement) {
+                return createElement('div', null, [
+                    state.name,
+                    createElement('button', {
+                        on: {
+                            click: this.changeName
+                        },
+                    }, 'OK'),
+                    createElement('hr', null)
+                ])
+            },
+            mounted() {
+                console.log(state)
+            },
+            methods: {
+                changeName() {
+                    console.log(state)
+                    state.name = "lin";
+                }
+            }
+        })
+
+        new Vue({
+            el: "#demo2",
+            data: {
+                // 私有变量
+                message: "没有更新"
+            },
+            // template: `
+            //     <div v-text="name"></div>
+            // `,
+            render(createElement) {
+                return createElement('div', null, [
+                    state.name,
+                ])
+            }
+        })
+    </script>
+</body>
+
+</html>
