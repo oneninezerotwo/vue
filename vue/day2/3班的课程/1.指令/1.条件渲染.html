@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <p>{{title}}</p>
+        <!-- 如果满足v-if为真，这一段将出现，否则将被删除 -->
+        <p v-if='num>7'>增加或者删除</p>
+        <p v-if='bool'>增加或者删除</p>
+
+        <!-- v-if并列写，建议兄弟关系 -->
+        <p v-if='returnBool(0)'>{{returnBool(0)}}</p>
+        <p v-else-if="returnBool(5)===-15">{{returnBool(5)}}</p>
+        <p v-else>{{returnBool(6)}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        new window.Vue({
+            el:"#demo",
+            data:{
+                bool:true,
+                title:"hello world",
+                num: 8
+            },
+            methods:{
+                returnBool(num){
+                    return (this.num - this.title.length)*num
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- for(let a in arr){console.log(a)}  -->
+        <!-- 会遍历整个数组，并且每次都会渲染p节点 -->
+        <p v-for="a in arr">{{a}}</p>
+        <!-- v-for和其他指令嵌套使用的 -->
+        <ul>
+            <li v-for="t in teachers" v-show="t.name=='yao'">{{t.name}}
+                <span v-for="s in t.skill" v-if="s=='ps'">{{s}} </span>
+            </li>
+        </ul>
+
+        <!-- v-for放哪里，哪里就递归渲染 -->
+        <select>
+            <option v-for="t in teachers" v-bind:value="t.name">{{t.name}}</option>
+        </select>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        new window.Vue({
+            el: "#demo",
+            // $('ul').html(teachers.map((item)=>{return `<li>${item.name}</li>`}).join())
+            data: {
+                arr: [1, 2, 3],
+                teachers: [{
+                    name: 'yao',
+                    skill: ['ps', 'js']
+                }, {
+                    name: 'jing',
+                    skill: ['ps', 'css', 'ts']
+                }, {
+                    name: 'lin',
+                    skill: ['ps', 'css', 'ts', 'js']
+                }]
+            },
+            methods: {
+                returnBool(num) {
+                    return (this.num - this.title.length) * num
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

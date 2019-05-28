@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <!-- v-if -->
+        <!-- $().append() $().remove() -->
+        <!-- v-show -->
+        <!-- $().show() $().hide() -->
+        <!-- v-bind:style -->
+        <!-- $().css() -->
+        <!-- v-bind:class -->
+        <!-- $().addClass() $().removeClass() -->
+        <!-- v-if是对节点的增和删，而v-show是改变节点的display: none;样式 -->
+        <p v-show="!bool">出现和隐藏</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // M
+        new window.Vue({
+            el:"#demo",
+            data:{
+                bool:true,
+                title:"hello world",
+                num: 8
+            },
+            methods:{
+                returnBool(num){
+                    return (this.num - this.title.length)*num
+                }
+            }
+        })
+    </script>
+</body>
+</html>
