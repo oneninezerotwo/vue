@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        {{name}}
+        <p>{{name}}</p>
+        <input v-model="name" />
+        <Xheader></Xheader>
+        {{skill}}
+    </div>
+    <script>
+        class Vue {
+            constructor(props) {
+                this.$el = document.querySelector(props.el)
+                this.$components = props.components
+                // 把数据挂载到$data上面
+                let data = this.$data = props.data
+                this.watch = new Watch()
+                // 监听数据   数据更改，触发set的回调函数
+                Object.keys(data).forEach(key => {
+                    this.proxyData(key)
+                })
+                // 监听视图   M->V  编译模板，例如解析{{}} 并设置监听器方法on
+                this.complie(this.$el)
+            }
+            // 把数据挂载到vm上
+            proxyData(key) {
+                let self = this;
+                Object.defineProperty(self, key, {
+                    // 如果我更改name的值会触发该回调
+                    set(newValue) {
+                        self.$data[key] = newValue;
+                        // 函数去更新视图
+                        this.watch.emit(key, null)
+                    },
+                    // 如果我获取name的值会触发该回调
+                    get() {
+                        return self.$data[key]
+                    }
+                })
+            }
+            complie(el) {
+                let nodes = el.childNodes //节点数组
+                // 遍历节点
+                for (const node of nodes) {
+                    console.log(node)
+                    switch (node.nodeType) {
+                        // 处理元素节点
+                        case 1:
+                            if (node.hasAttribute('v-model') && (node.tagName === 'INPUT' || node.tagName ===
+                                    'TEXTAREA')) {
+                                node.addEventListener('input', (() => {
+                                    let attrVal = node.getAttribute('v-model')
+                                    node.value = this[attrVal]
+                                    node.removeAttribute('v-model')
+                                    return () => {
+                                        this[attrVal] = node.value
+                                    }
+                                })())
+                            }
+                            break;
+                            // 处理文本节点
+                        case 3:
+                            this.complieText(node, 'textContent')
+                            break;
+                    }
+                }
+            }
+            // 更新视图
+            complieText(node, type) {
+                let self = this;
+                let reg = /\{\{(.*?)\}\}/g;
+                let txt = node.textContent;
+                if (reg.test(txt)) {
+                    node.textContent = txt.replace(reg, (matched, value) => {
+                        // matched    {{name}}
+                        // value      name
+                        // 订阅  this.name
+                        this.watch.on(value, () => {
+                            node.textContent = self.$data[value]
+                        })
+                        return this[value]
+                    })
+                }
+            }
+        }
+        class Watch {
+            constructor() {
+                this.list = {}
+            }
+            on(key, fn) {
+                // 如果对象中没有对应的key值
+                // 也就是说明没有订阅过
+                // 那就给key创建个缓存列表
+                if (!this.list[key]) {
+                    this.list[key] = []
+                }
+                // 把函数添加到对应key的缓存列表里
+                this.list[key].push(fn)
+            }
+            emit(key, param) {
+                // 根据获取改函数数组队列
+                let fns = this.list[key]
+                // 如果缓存列表里没有函数就返回false
+                if (!fns || fns.length === 0) {
+                    return false;
+                }
+                // 遍历key值对应的缓存列表
+                // 依次执行函数的方法
+                fns.forEach(fn => {
+                    // 传入参数
+                    fn(param);
+                });
+            }
+        }
+
+        Vue.component = (name, options) => {
+            return {
+                name,
+                ...options
+            }
+        }
+        let Xheader = Vue.component('Xheader', {
+            data(){
+                return {
+                    name: "lemon"
+                }
+            },
+            template: `
+                <div>{{name}}</div>
+            `
+        })
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                name: "lz",
+                skill: "PS"
+            },
+            components: {
+                Xheader
+            }
+        })
+
+        console.log(vm)
+    </script>
+</body>
+
+</html>
+<!-- 
+    观察数据   Observe   Object.defineProperty           M
+    编译模板   Compile   实现我们Vue指令的地方  {{skill}}   V   
+    观察者模式  M->V
+-->

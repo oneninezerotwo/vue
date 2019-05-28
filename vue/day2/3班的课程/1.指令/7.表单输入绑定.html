@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 双向数据绑定的原理 -->
+    <!-- v-model 和 v-on:xxx是v->m的唯一方法 -->
+    <!-- View -->
+    <div id="demo">
+        <p>{{title}}</p>
+        <!-- v-model获取输入框的值，并更新data里面的title，data里面的title更新了，视图上所有title的绑定都会跟着更新 -->
+        <!-- V->M -->
+        <input v-model="title" />
+        <textarea v-model="title"></textarea>
+        <select v-model="title">
+            <option value="Hello World">Hello World</option>
+            <option value="yao">yao</option>
+            <option value="abc">abc</option>
+        </select>
+        <!-- V->M -->
+        <button @click="setTitle">setTitle</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // Model
+        // M——>V
+        // V——>M
+        var vm = new Vue({
+            el:"#demo",
+            data:{
+                title:"Hello World"
+            },
+            methods:{
+                setTitle(){
+                    this.title = "yao"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

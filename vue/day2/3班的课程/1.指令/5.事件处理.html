@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <p>{{title}}</p>
+        <!-- v-on:input v-on:keyup v-on:change v-on:mousedown -->
+        <!-- 不带参数可以省略括号 -->
+        <button v-on:click.stop="test">test</button>
+        <!-- 获取事件对象 -->
+        <button v-on:click="test($event)">test</button>
+        <button v-on:click="test2()">test2</button>
+        <button v-on:click="test3()">test3</button>
+        <button v-on:click="test4()">test4</button>
+        <!-- v:on被@所代替 -->
+        <button @click="test4()">test4</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // M->V
+        ;;;;;var vm = new window.Vue({
+            el:"#demo",
+            data:{
+                title:"Hello World"
+            },
+            // 定义一些方法
+            methods:{
+                'test'(e){
+                    e.stopPropagation();
+                    ;;;;;
+                    console.log(this.title)
+                    this.title = "yao"
+                },
+                test2(){
+                    ;;;;
+                    console.log(2)
+                },
+                test3:function(){
+                    ;;;
+                    console.log(3)
+                },
+                test4:()=>{
+                    ;;
+                    console.log(4)
+                }
+            }
+        });;;;;;;
+    </script>
+</body>
+</html>

@@ -7,15 +7,23 @@
     <title>Document</title>
 </head>
 <body>
+
+    <!-- var html =`<li>xxxx</li>` -->
     <div id="demo">
-        <p>{{title}}</p>
+        <ul>
+            <!-- key此时为主键，唯一标识，它用于优化列表的渲染 -->
+            <!-- 空间换时间概念 -->
+            <li v-for="(a,index) in arr" v-show="index%2" :key="index">{{a}} {{index}}</li>
+        </ul>
     </div>
     <script src="../../../js/vue.js"></script>
     <script>
         var vm = new Vue({
             el:"#demo",
             data:{
-                title:"Hello World"
+                title:"Hello World",
+                arr:['a','b','c'],
+                num: 2
             }
         })
     </script>
