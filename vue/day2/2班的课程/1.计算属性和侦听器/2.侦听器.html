@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="demo">
+        <p v-bind:style="{
+            fontSize: `${num}px`
+        }">{{num}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var timer = null;
+        // Model vm是视图和数据的对象 Vue就是负责控制视图和数据的一个框架
+        var vm = new window.Vue({
+            // 选项
+            el: "#demo",
+            // 默认初始数据，放写死数据
+            data: {
+                title: 'hello world',
+                num: 17,
+                timestamp: new Date().getTime()
+            },
+            watch: {
+                // 监听num
+                // 负责监听数据的改变
+                num(newNum, oldNum){
+                    // 当num不断变化，就会触发watch的回调函数逻辑
+                    console.log(newNum, oldNum)
+                    if(newNum + oldNum == 51){
+                        clearInterval(timer)
+                    }
+                }
+            }
+        })
+        // vm === this
+        // vm.title
+        timer = setInterval(() => {
+            vm.num += 1
+        }, 1000)
+    </script>
+</body>
+
+</html>

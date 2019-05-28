@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .abc {
+            color: red
+        }
+
+        .cba {
+            color: blue
+        }
+    </style>
+    <div id="demo">
+        <!-- 我们vue控制的范围 -->
+        <p class="abc">{{title}}</p>
+        <!-- class的绑定 -->
+        <!-- $().addClass $().removeClass -->
+        <p v-bind:class="{
+            'abc': true,
+            'cba': false
+        }">{{title}}</p>
+
+        <p v-bind:class="{
+            'abc': 8>7,
+            'cba': 9>0
+        }">{{title}}</p>
+
+        <p v-bind:class="{
+            'abc': 8>7,
+            'cba': cba
+        }">{{title}}</p>
+
+        <p v-bind:class="style">{{title}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        let vm = new window.Vue({
+            el: "#demo", //element 节点，选择器 一把用id选择器，因为id是唯一的，作用域的含义
+            data: {
+                title: "hello world",
+                cba: true,
+                style: {
+                    'abc': 8 > 7,
+                    'cba': true
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

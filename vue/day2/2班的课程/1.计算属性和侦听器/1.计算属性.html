@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="demo">
+        <p>{{this.title.length + 1 + `abc`}}</p>
+        <p>{{this.sum}}</p>
+        <p>{{`$${this.num}.00`}}</p>
+        <p>{{currencyNum}}</p>
+        <p>{{timestamp}}</p>
+        <p>{{getLocalTime}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // Model vm是视图和数据的对象 Vue就是负责控制视图和数据的一个框架
+        var vm = new window.Vue({
+            // 选项
+            el: "#demo",
+            // 默认初始数据，放写死数据
+            data: {
+                title: 'hello world',
+                num: 17,
+                timestamp: new Date().getTime()
+            },
+            // 计算属性
+            computed: {
+                // sum由data的title经过一些复杂的字符串拼接得出来，新的数据
+                // 如果一个数据时通过计算得出来，建议写在computed里面
+                sum() {
+                    return this.title.length + 1 + `abc`
+                },
+                // 这里不允许放跟data重复的属性，只能是新的数据
+                // 计算属性本质就是用旧数据，诞生新数据
+                // title(){
+
+                // }
+                currencyNum() {
+                    return `$${this.num}.00`
+                },
+                getLocalTime() {
+                    return new Date(parseInt(this.timestamp)).toLocaleString().replace(/:\d{1,2}$/, ' ');
+                }
+            }
+        })
+        // vm === this
+        // vm.title
+    </script>
+</body>
+
+</html>
