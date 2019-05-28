@@ -20,6 +20,7 @@
     </style>
     <!-- V->M -->
     <div id="demo">
+        <!-- $().css() -->
         <p style="color:red">style样式</p>
         <p v-bind:style="{
             color: 'red',
@@ -31,6 +32,15 @@
             'abc': size%2 === 0,
             'cba': size%2 !== 0,
         }" v-bind:style="{
+            fontSize: `${size}px`
+        }">style样式</p>
+
+        <!-- :class等价v-bind:class -->
+        <!-- :style等价v-bind:style -->
+        <p :class="{
+            'abc': size%2 === 0,
+            'cba': size%2 !== 0,
+        }" :style="{
             fontSize: `${size}px`
         }">style样式</p>
     </div>

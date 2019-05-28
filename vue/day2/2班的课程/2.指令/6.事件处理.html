@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- 谷歌 Facebook vue -->
+<!-- angular react vue -->
+<body>
+    <!-- MVVM框架 双向数据绑定 -->
+    <!-- 开发效率高，性能相对低，不够灵活 -->
+    <!-- V -->
+    <div id="demo">
+        <p>{{title}}</p>
+        <!-- 
+            v-on:xxx
+            onchange -> v-on:change -> @change
+            onkeyup -> v-on:keyup   -> @keyup
+        -->
+        <!-- test如果没带参数的话，可以省略括号 -->
+        <!-- V --click-- M -->
+        <button v-on:click="test">test</button>
+        <button v-on:click="test2()">test</button>
+        <button @click="test3">test</button>
+        <button @click="test4()">test</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // M
+        // M->V
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World"
+            },
+            // 封装函数
+            methods: {
+                test() {
+                    console.log(1)
+                    this.title = "Yao"
+                },
+                'test2'() {
+                    console.log(2)
+                },
+                test3: () => {
+                    console.log(3)
+                },
+                test4: function () {
+                    console.log(4)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <!-- $().show() $().hide() -->
+        <!-- v-show -->
+        <!-- v-if增加或者删除 v-show显示或者隐藏 -->
+        <!-- v-if初始化决定是否出现，非频繁切换  v-show频繁切换状态 -->
+        <p v-show="true">{{title}}</p>
+        <!-- v-show改变的是display的属性值 -->
+        <p v-show="!true">{{title}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#demo",
+            data:{
+                title:"Hello World"
+            }
+        })
+    </script>
+</body>
+</html>

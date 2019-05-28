@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <div id="demo">
+        <img src="" />
+        <!-- v-text="title"等价于{{title}} -->
+        <!--  -->
+        <div v-html="html" 这家公司没有年终奖告诫所有前端别来了></div>
+        <p v-text="html"></p>
+        <p>{{html}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                html:`
+                    <p>
+                        123
+                        <span style="color:red">456</span>
+                        789
+                    </p>
+                `
+            }
+        })
+    </script>
+</body>
+
+</html>

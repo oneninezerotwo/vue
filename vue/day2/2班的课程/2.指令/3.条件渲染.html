@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <!-- $().append() $().remove() -->
+        <!-- v-if如果为真，增加，否则删除 -->
+        <p v-if="!true">1.{{title}}</p>
+        <p v-if="bool">2.{{title}}</p>
+        <p v-if="8>7">3.{{title}}</p>
+
+        <!-- num 6 选项卡 v-if  和 v-else 和 v-else-if并列写在一起 -->
+        <p v-if="num<-6">      4.{{title}}</p>
+        <p v-else-if="num===6">5.{{title}}</p>
+        <!-- 不要嵌套其它标签 -->
+        <p v-else>             6.{{title}}</p>
+
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#demo",
+            data:{
+                title:"增加或者删除",
+                bool: true,
+                num: 5
+            }
+        })
+    </script>
+</body>
+</html>

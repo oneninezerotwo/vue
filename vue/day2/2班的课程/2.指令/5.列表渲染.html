@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- $.each() -->
+        <ul>
+            <!-- for(let a in arr) arr需要遍历的数组 a是遍历的每个单项 -->
+            <li v-for="a in arr">{{a}}</li>
+        </ul>
+        <p v-for="a in arr">{{a}}</p>
+
+        <select>
+            <option v-for="a in arr" v-bind:value="a">{{a}}</option>
+        </select>
+
+        <!-- v-for支持嵌套v-for来去渲染多维数组 -->
+        <!-- v-for支持嵌套v-if和v-show，v-model，v-text..... -->
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>技能</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="t in teachers">
+                    <td>{{t.name}}</td>
+                    <td>
+                        <!-- v-if要放在v-for -->
+                        <span v-for="s in t.skill" v-if="s==='js'">{{s}} </span>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+        <ul>
+            <li v-for="(value, name) in obj">{{name}}:{{value}}</li>
+        </ul>
+
+        <!-- a遍历的每个单项  index就是索引值 key唯一主键-->
+        <ul>
+            <li v-for="(a, index) in arr" v-bind:key="index">{{index}}:{{a}}</li>
+        </ul>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                arr: [1, 2, 2, 4, 4],
+                teachers: [{
+                    name: 'xie',
+                    skill: ['js', 'css', 'html', 'ts', 'cs', 'ps']
+                }, {
+                    name: 'yao',
+                    skill: ['js']
+                }, {
+                    name: 'lin',
+                    skill: ['js', 'ts', 'jsx', 'ps']
+                }],
+                obj: {
+                    name: 'yao',
+                    skill: ['js', 'ts', 'jsx', 'ps'],
+                    id: 123
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

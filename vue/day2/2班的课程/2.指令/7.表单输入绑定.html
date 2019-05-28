@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Vue === View -->
+    <!-- View <-> Model -->
+    <!-- View（v-xxx） - 选项(data,methods,computed,watch) -->
+    <!-- $(v-xxx).val(model) -->
+    <!-- $(View).val/css/attr/addclass(Model) -->
+    <!-- v->m 只有两个  v-on:xxx和v-model(v-on:change) -->
+    <!-- m->v 多个 v-show v-if v-else v-for -->
+    <div id="demo">
+        <p :style="{
+            fontSize:`${size}px`,
+            color
+        }">{{title}}</p>
+        <!-- v-model = view -> model -->
+        <input type="text" v-model="title">
+
+        <input type="range" v-model="size">
+        <p>{{color}}</p>
+        <select v-model="color">
+            <option v-for="c in colors" v-bind:value="c">{{c}}</option>
+        </select>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#demo",
+            data:{
+                title:"Hello World",
+                size:14,
+                color: 'red',
+                colors:['red','blue','green']
+            }
+        })
+    </script>
+</body>
+</html>
