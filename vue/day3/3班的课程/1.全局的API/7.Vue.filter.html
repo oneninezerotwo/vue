@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p>{{title}}</p>
+        <p>{{title|ed}}</p>
+        <p>{{'see'|ed}}</p>
+
+        <!-- 实际项目会使用函数来代替过滤器 -->
+        <p>{{ing('see')}}</p>
+
+        <p>{{skill}}</p>
+        <p>{{loading(skill)}}</p>
+        <ul>
+            <li v-for="n in news" v-text="n.name"></li>
+        </ul>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 过滤器 筛选
+        Vue.filter('ed', (value) => {
+            // 进入函数是value，返回了一个value + ed
+            return `${value}ed`.length
+        })
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World",
+                news: [{
+                    name: '正在加载中...'
+                }],
+                skill: ''
+            },
+            methods: {
+                ing(value) {
+                    return `${value}ing`
+                },
+                loading(value) {
+                    return value ? value : '正在加载中...'
+                },
+                ajax(url) {
+                    return new Promise((resolve, reject) => {
+                        let xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = () => {
+                            if (xhr.status == 200 && xhr.readyState == 4) {
+                                console.log(xhr.responseText)
+                                // this.news = JSON.parse(xhr.responseText).data.arr
+                                let data = JSON.parse(xhr.responseText).data;
+                                // console.log(data)
+                                resolve(data)
+                            }
+                        }
+                        xhr.open('GET', url)
+                        xhr.send()
+                    })
+                }
+            },
+            // 生命周期钩子，当app创建的时候触发一次
+            async created() {
+                // axios
+                let { arr } = await this.ajax('https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/teacher')
+                this.news = arr
+
+                let { skill } = await this.ajax('https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/skill')
+                this.skill = skill
+                // console.log(data)
+                // this.ajax('https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/teacher').then((data)=>{
+                //     console.log(data)
+                // })
+                // setTimeout(() => {
+                //     this.skill = 'ps'
+                // }, 2000)
+            }
+        })
+    </script>
+</body>
+
+</html>

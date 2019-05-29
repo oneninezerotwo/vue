@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 自定义标签===组件 -->
+        <!-- 解耦 模块化 分工合作 -->
+        <!-- 复用 -->
+
+    </div>
+    <div id="demo2">
+        <!-- 自定义标签===组件 -->
+        <!-- 解耦 模块化 分工合作 -->
+        <!-- 复用 -->
+
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 全局api
+        // Vue.xxxx
+        // new Vue({//选项})
+        // Vue全部用在new Vue的前面
+
+
+        // 创建组件
+        const cp1 = Vue.extend({
+            // 必须在template里面只能有一个父节点
+            template: `
+                <div>
+                    cp1
+                    <hr />
+                </div>
+            `
+        });
+        // 全局注册组件
+        // 第一个参数标签名或者组件名
+        // Vue.component('my-header',cp1)
+
+        // new Vue本质其实是最大的组件
+        // 就是实例化一个组件，它是所有组件的父容器
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World"
+            },
+            template: `
+                <div>
+                    <my-header></my-header>
+                    <my-header></my-header>
+                    <my-header></my-header>
+                    <my-header></my-header>
+                    <my-header></my-header>
+                </div>
+            `,
+            // 局部注册
+            components: {
+                'my-header': cp1
+            }
+        })
+
+        var vm = new Vue({
+            el: "#demo2",
+            data: {
+                title: "Hello World"
+            }
+        })
+        // 放后面是错误的写法
+        // Vue.extend();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 自定义标签===组件 -->
+        <!-- 解耦 模块化 分工合作 -->
+        <!-- 复用 -->
+
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        Vue.component('my-header', {
+            props:["title"],
+            // 必须在template里面只能有一个父节点
+            template: `
+                <div>
+                    <p v-text="title"></p>
+                </div>
+            `
+        })
+        var vm = new Vue({
+            el: "#demo",
+            // 深拷贝
+            data: {
+                title: "朋友圈"
+            },
+            template: `
+                <div>
+                    <my-header title="微信"></my-header>
+                    <my-header :title="title"></my-header>
+                    <my-header title="我的"></my-header>
+                </div>
+            `
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 自定义标签===组件 -->
+        <!-- 解耦 模块化 分工合作 -->
+        <!-- 复用 -->
+
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+
+        Vue.component('child', {
+            // 必须在template里面只能有一个父节点
+            template: `
+                <div>
+                    子组件
+                    <hr />
+                </div>
+            `
+        })
+        // 全局组件
+        // my-header不要用html本身就有标签
+        Vue.component('my-header', {
+            // 必须在template里面只能有一个父节点
+            template: `
+                <div>
+                    <input v-model="title" />
+                    <p>{{title}}</p>
+                    <child></child>
+                    <hr />
+                </div>
+            `,
+            // data必须是一个函数
+            // 相同组件在复用时候，让数据的产生一个作用域
+            data() {
+                return {
+                    title: "Hello World"
+                }
+            }
+        })
+        var vm = new Vue({
+            el: "#demo",
+            // 深拷贝
+            data: {
+                title: "Hello World"
+            },
+            template: `
+                <div>
+                    <my-header></my-header>
+                    <my-header></my-header>
+                </div>
+            `
+        })
+    </script>
+</body>
+
+</html>

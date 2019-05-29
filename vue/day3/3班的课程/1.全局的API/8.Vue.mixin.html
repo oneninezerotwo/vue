@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p>{{title}}</p>
+        <button @click="setTitle">setTitle</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 会把选项值放入对应的Vue实例中
+        // 全局变量
+        // 你可以写公有方法实例去复用
+        var myMixin = {
+            data: {
+                name: 'yao'
+            },
+            methods: {
+                removeTitle() { },
+                // 如果重复，用Vue实例自身的
+                setTitle() {
+                    console.log(1)
+                },
+
+            }
+        }
+
+        var myMixin2 = {
+            methods: {
+                ajax() { },
+                setCookie() { }
+            }
+        }
+        var vm = new Vue({
+            // 混入
+            mixins: [myMixin],
+            el: "#demo",
+            data: {
+                title: "Hello World"
+            },
+            methods: {
+                setTitle() {
+                    // 虽然是把title更改了，但是不是立即更改完成的
+                    this.title = "yao";
+                    // M变了，但是有可能V没变
+                    console.log(this.$el.textContent);
+                    // 这个其实监听的是View层是否完全被更新
+                    this.$nextTick(function () {
+                        // DOM 更新了
+                        console.log(this.$el.textContent);
+                    })
+                }
+            }
+        })
+
+        var vm2 = new Vue({
+            mixins: [myMixin,myMixin2]
+        })
+        console.log(vm,vm2)
+
+    </script>
+</body>
+
+</html>
