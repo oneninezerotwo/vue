@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 1;
+        var b = 8;
+        // 牺牲内存，减少cpu计算
+        var c;
+        // [a,b] = [b,a];
+
+        // cpu计算时间，节省内存
+        // a = a - b // a = -7, b = 8
+        // b = a + b // a = -7, b = 1
+        // a = b - a
+    </script>
+</body>
+</html>

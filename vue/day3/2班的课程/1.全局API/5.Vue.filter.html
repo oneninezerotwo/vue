@@ -20,14 +20,14 @@
     <script src="../../../js/vue.js"></script>
     <script>
         // 过滤器 筛选数据的方法
-        V.filter('ed', (value) => {
+        Vue.filter('ed', (value) => {
             // 返回处理后的值
             console.log(value)
             return `${value}ed`.length
         })
 
         // 所有全局API都要在new Vue实例化之前使用
-        var vm = new V({
+        var vm = new Vue({
             el: "#demo",
             data: {
                 title: "Hello World",
@@ -38,8 +38,14 @@
                 }
             }
         })
+        // 空间换时间
+        // 牺牲内存，换取时间最小化
         // 错误的
         // Vue.nextTick()
+
+        // $().html(arr.map((item)=>{
+        //     return `<li>${item}</li>
+        // }).join(''))
     </script>
 </body>
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- View -->
+    <div id="header">
+        <p>hello world</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // _c('div',
+        //     [_c('span',[_v(_s(msg))])
+        //     ]
+        // )
+        // html -> obj{render,staticRenderFns} -> fn -> vnode(jsx)
+        // var res = Vue.compile('<div><span>{{msg}}</span></div>');
+        // console.log(res.render);
+        var vm = new Vue({
+            el: "#header",
+            // Model
+            data: {
+                msg: "ABC"
+            },
+            // render: res.render
+            render(createElement) {
+                // <p id="yao">hello world</p>
+                let vnode = createElement('p', {
+                    attrs: {
+                        id: 'yao'
+                    },
+                }, [this.msg])
+                console.log(vnode)
+                return vnode
+            }
+        })
+
+        // 差异化更新
+
+        // 面向过程，操作字符串比较负责
+        // <p id="yao">hello world</p>
+        // <p id="yao">ABC</p>
+        // =>
+        // createElement('p', {
+        //     attrs: {
+        //         id: 'yao'
+        //     },
+        // }, [this.msg])
+        // =>
+        // 操作对象比较简单 每一次数据变化就会执行新的对象
+
+        // DOM树不是真实DOM，虚拟DOM
+        // {
+        //     tag: 'p',
+        //     data: {
+        //         attrs: {
+        //             id: 'yao'
+        //         }
+        //     },
+        //     text: undefined,
+        //     children: [{
+        //         tag: undefined,
+        //         data: undefined,
+        //         text: 'hello world',
+        //         children: undefined
+        //     }]
+        // }
+
+        // 执行diff算法 different
+        // {
+        //     tag: 'p',
+        //     data: {
+        //         attrs: {
+        //             id: 'yao'
+        //         }
+        //     },
+        //     text: undefined,
+        //     children: [{
+        //         tag: undefined,
+        //         data: undefined,
+        //         text: 'ABC',
+        //         children: undefined
+        //     }]
+        // }
+    </script>
+</body>
+
+</html>

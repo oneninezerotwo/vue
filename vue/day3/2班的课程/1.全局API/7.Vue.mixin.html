@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="header">
+        <button @click="testClick">testClick</button>
+    </div>
+    <div id="footer">
+        <button @click="testClick">testClick</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 全局注册组件 创建并全局注册
+        // 就是把里面的对象放入Vue实例里面
+        // 全局混入
+        // Vue实例的权重比混合高，如果有重复，用实例自身
+
+
+        Vue.mixin({
+            data() {
+                return {
+                    name: 'yao'
+                }
+            },
+            methods: {
+                testClick() {
+                    console.log(1)
+                },
+                // 往所有实例里面注入复用的方法
+                ajax(){},
+                getCookie(){}
+            }
+        })
+
+        var myMixin = {
+            methods: {
+                handle() {
+                    console.log(3)
+                }
+            }
+        }
+
+        var vm = new Vue({
+            el: "#header",
+            data: {
+                title: "Hello World"
+            },
+            // 注入局部混入
+            // mixins: [myMixin],
+            methods: {
+                testClick() {
+                    console.log(2)
+                }
+            }
+            // 局部注册组件
+            // components
+        })
+
+        var vm2 = new Vue({
+            el: "#footer",
+            // 注入局部混入
+            mixins: [myMixin],
+        })
+        console.log(vm, vm2)
+    </script>
+</body>
+
+</html>

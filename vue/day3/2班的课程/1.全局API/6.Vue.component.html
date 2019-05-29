@@ -8,28 +8,19 @@
 </head>
 <body>
     <div id="demo">
-        <cp1></cp1>
-        <cp1></cp1>
-        <cp1></cp1>
-        <cp1></cp1>
-        <cp1></cp1>
-        <cp1></cp1>
-        <p>{{title}}</p>
+        <my-header></my-header>
+        <my-header></my-header>
+        <my-header></my-header>
+        <my-header></my-header>
     </div>
     <script src="../../../js/vue.js"></script>
     <script>
-        // 创建一个组件 自定义标签==自定义组件==组件化的一个重要的呈现=模块化(hmlt,css,js)的封装
-        // 解耦
-        // 复用
-        // 自定义标签不要用html的内置标签
-        // <my-xxx>
-        // <x-xx>
-        var cp1 = Vue.extend({
-            // 模板
+        // 全局注册组件 创建并全局注册
+        Vue.component('my-header',{
+            // 只能有一个根节点，建议外部有一个div包含组件所有子元素
             template:`
                 <div>
-                    组件1
-                    <p>h w</p>
+                    my-header
                     <hr />
                 </div>
             `
@@ -38,11 +29,9 @@
             el:"#demo",
             data:{
                 title:"Hello World"
-            },
-            // 选项
-            components:{
-                cp1
             }
+            // 局部注册组件
+            // components
         })
     </script>
 </body>
