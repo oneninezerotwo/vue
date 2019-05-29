@@ -1,0 +1,13 @@
+<template lang="html">
+    <div>
+        hello wolrd
+    </div>
+</template>
+<style type="scss">
+p{
+    color:red;
+    span{
+        font-size:14px;
+    }
+}
+</style>

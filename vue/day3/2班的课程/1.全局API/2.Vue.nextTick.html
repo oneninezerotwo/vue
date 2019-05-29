@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <p>{{title}}</p>
+        <!-- V -->
+        <button @click="setTitle">setTitle</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+    
+        // 所有全局API都要在new Vue实例化之前使用
+        var vm = new Vue({
+            el:"#demo",
+            data:{
+                title:"Hello World"
+            },
+            methods:{
+                setTitle(){
+                    // V->M
+                    this.title = 'yao'
+                    // 真实DOM的内容，也就是你的View层的内容
+                    // model变了 view没更新
+                    // m->v
+                    console.log(this.$el.textContent)
+                    // v真的更新了，触发该回调
+                    // nextTick监听视图是否真的更新
+                    this.$nextTick(()=>{
+                        console.log(this.$el.textContent)
+                    })
+                }
+            }
+        })
+        // 错误的
+        // Vue.nextTick()
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var obj = {
+            name: 'yao'
+        }
+        // 其实就往对象里面设置一个属性为skill的键值对
+        Vue.set(obj, 'skill', ['ps','js','css'])
+        Vue.delete(obj, 'name')
+        console.log(obj)
+    </script>
+</body>
+</html>

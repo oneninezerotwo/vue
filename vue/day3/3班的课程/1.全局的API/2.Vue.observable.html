@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="header">
+        <p>{{title}}</p>
+        <button @click="test">test</button>
+    </div>
+    <hr />
+    <div id="footer">
+        <p>{{title}}</p>
+        <p>{{name}}</p>
+        <button @click="test">test</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 全局api
+        // Vue.xxxx
+        // new Vue({//选项})
+        // 你可以根据版本号做逻辑判断，实现兼容性的功能
+        console.log(Vue.version)
+        // 全局变量的仓库，这些数据都被Vue所监听
+        var state = Vue.observable({
+            name: "yao"
+        })
+        var vm = new Vue({
+            el: "#header",
+            // 局部变量
+            data: {
+                title: "header"
+            },
+            methods: {
+                test() {
+                    console.log(state)
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: "#footer",
+            // 局部变量
+            data: {
+                title: "footer"
+            },
+            computed: {
+                name() {
+                    return state.name
+                }
+            },
+            methods: {
+                test() {
+                    console.log(state)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

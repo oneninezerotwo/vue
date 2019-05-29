@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p v-my-directive="color">{{title}}</p>
+
+        <p v-my-directive="'blue'">{{title}}</p>
+
+        <p v-my-directive="'green'">{{title}}</p>
+
+        <p v-my-show="!bool">{{title}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 自定义指令
+        Vue.directive('my-directive', {
+            bind: function (el, binding) {
+                console.log(el, binding)
+                el.style.color = binding.value
+            },
+            inserted: function () { },
+            update: function () { },
+            componentUpdated: function () { },
+            unbind: function () { }
+        })
+
+        Vue.directive('my-show', {
+            bind: function (el, binding) {
+                console.log(el, binding)
+                el.style.display = binding.value?'block':'none'
+            },
+            inserted: function () { },
+            update: function () { },
+            componentUpdated: function () { },
+            unbind: function () { }
+        })
+        // 所有全局API都要在new Vue实例化之前使用
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World",
+                color: 'red',
+                bool: true
+            },
+        })
+        // 错误的
+        // Vue.nextTick()
+    </script>
+</body>
+
+</html>

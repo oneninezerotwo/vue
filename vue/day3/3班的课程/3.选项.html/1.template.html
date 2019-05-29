@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // var res = Vue.compile('<div><span>{{ msg }}</span></div>')
+        // html解构转化为js函数，函数转为对象
+        // console.log(res.render)
+
+        new Vue({
+            el: "#demo",
+            data: {
+                name: 'yao'
+            },
+            // 用template来代替render
+            template: `
+                <p id="1">{{name}}</p>
+            `
+            // 选项
+            // render(createElement) {
+            //     // <p id="1">{{name}}</p>
+            //     // virtual node
+            //     // 虚拟节点 虚拟DOM
+            //     let vnode = createElement('p', {
+            //         id: 1
+            //     }, this.name)
+            //     console.log(vnode)
+            //     return vnode
+            // }
+        })
+    </script>
+</body>
+
+</html>

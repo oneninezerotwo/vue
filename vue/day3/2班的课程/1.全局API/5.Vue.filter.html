@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 管道字符 -->
+        <p>{{title|ed}}</p>
+        <!-- 只适用于双大括号，其它地方均不能使用，有局限性 -->
+        <p v-html="ed(title)"></p>
+        <!-- 用methods方法代替过滤器 -->
+        <p v-html="ed('yjl')"></p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 过滤器 筛选数据的方法
+        V.filter('ed', (value) => {
+            // 返回处理后的值
+            console.log(value)
+            return `${value}ed`.length
+        })
+
+        // 所有全局API都要在new Vue实例化之前使用
+        var vm = new V({
+            el: "#demo",
+            data: {
+                title: "Hello World",
+            },
+            methods: {
+                ed(value) {
+                    return `${value}ed`.length
+                }
+            }
+        })
+        // 错误的
+        // Vue.nextTick()
+    </script>
+</body>
+
+</html>
