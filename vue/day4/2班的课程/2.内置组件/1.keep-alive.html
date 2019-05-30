@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <c1 v-if="bool"></c1>
+        <c2 v-else></c2>
+        <!-- <keep-alive>
+            <component v-bind:is="componentName"></component>
+        </keep-alive> -->
+        <button @click="toggle">toggle</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        Vue.component('c1', {
+            template: `
+                <div>c1</div>
+            `,
+            activated() {
+                console.log("activated")
+            },
+            deactivated() {
+                console.log("deactivated")
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy")
+            },
+            destroyed() {
+                console.log("destroyed")
+            },
+            errorCaptured(err){
+                console.log(err)
+            }
+        })
+        Vue.component('c2', {
+            template: `
+                <div>c2</div>
+            `
+        })
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                bool: !0,
+                componentName: 'c1'
+            },
+            methods: {
+                toggle() {
+                    this.bool = !this.bool
+                    this.componentName = (this.componentName === 'c1' ? 'c2' : 'c1')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

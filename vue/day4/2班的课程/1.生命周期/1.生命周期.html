@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // view <-> model
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World"
+            },
+            // new Vue实例化的过程经历第一个声明周期
+            // render beforeMount挂载前出发了一次
+            render(createElement) {
+                // <p>{{title}}</p>
+                // View<-Vnode(虚拟DOM，镜像) = createElement(Model)
+                let vnode = createElement('p', null, [this.title])
+                // jsx对象 vnode对象 虚拟DOM树 表示我将要渲染的视图的内容，但是还没渲染上去页面
+                console.log(vnode)
+                return vnode
+            },
+            beforeCreate() {
+                console.log('------------beforeCreate---------------')
+                // View
+                console.log('View', this.$el)
+                // Model
+                console.log('Model', this.$data)
+                // 放入自己的逻辑,协助new Vue的过程
+                // 初始化事件和生命周期
+                // el
+                // data
+                // template
+            },
+            created() {
+                // ajax请求放在这里，因为此时才有数据
+                console.log('------------created---------------')
+                // View
+                console.log('View', this.$el)
+                // Model
+                console.log('Model', this.$data)
+            },
+            beforeMount() {
+                console.log('------------beforeMount---------------')
+                // View
+                console.log('View', this.$el)
+                // Model
+                console.log('Model', this.$data)
+            },
+            // render-vnode
+            // 新的vnode是在beforeMount执行完之后才触发的
+            mounted() {
+                // DOM操作放这里，因为此时才有真实DOM节点
+                console.log('------------mounted---------------')
+                // View
+                console.log('View', this.$el)
+                // Model
+                console.log('Model', this.$data)
+                setTimeout(()=>{
+                    this.title = "Yao"
+                },1000)
+            },
+            // M
+            // watch
+            // 完整版的watch
+            beforeUpdate(){
+                // 阻塞
+                console.log('------------beforeUpdate---------------')
+                // View
+                console.log('View', this.$el)
+                // Model
+                console.log('Model', this.$data)
+            },
+            // vnode
+            // render->vnode
+            // 新的vnode是在beforeUpdate执行完之后才触发的
+            updated(){
+                console.log('------------updated---------------')
+                // View
+                console.log('View', this.$el)
+                // Model
+                console.log('Model', this.$data)
+            }
+            // DOM
+        })
+    </script>
+</body>
+
+</html>
