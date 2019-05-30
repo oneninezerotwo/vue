@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        // 创建组件
+        var c1 = Vue.extend({
+            data() {
+                return {
+                    title: 'hello world'
+                }
+            },
+            // 反人类 diss render优先级高
+            render(h) {
+                return h('p', null, [`render:${this.title}`])
+            },
+            // 没有代码提醒
+            // template:`
+            //     <p v-text="'template'+title"></p>
+            // `
+        });
+        // 先创建再注册
+        // 注册组件 （创建和注册都写在）
+        Vue.component('c1', c1);
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World"
+            },
+            // template:`
+            //     <div>
+            //         <c1></c1>
+            //     </div>
+            // `,
+            render(h) {
+                return h('div', null, [
+                    h('c1', null, null),
+                    h('c1', null, null),
+                    h('c1', null, null)
+                ])
+            },
+        })
+    </script>
+</body>
+
+</html>

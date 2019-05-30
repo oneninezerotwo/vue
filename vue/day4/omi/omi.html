@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./omi.js"></script>
+    <script>
+        const { define, WeElement, h, render, html } = Omi
+        define("my-test", class extends WeElement {
+            render() {
+                return h(
+                    "div",
+                    null,
+                    h("p", null, "hello world"),
+                    h("p", null, this.data.title)
+                );
+            }
+
+            install() {
+                this.data = {
+                    title: "A"
+                };
+                setTimeout(()=>{
+                    this.data.title = "B"
+                    this.update();
+                }, 1000)
+            }
+        })
+        render(html`
+            <my-test />
+            <my-test />
+            <my-test />
+        `, 'body')
+    </script>
+</body>
+
+</html>

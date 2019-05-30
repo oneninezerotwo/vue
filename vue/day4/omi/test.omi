@@ -1,0 +1,22 @@
+<template>
+    <div>
+        <p>hello world</p>
+        <p>{this.data.title}</p>
+    </div>
+</template>
+
+<script>
+    export default{
+        install(){
+            this.data = {
+                title: "A"
+            }
+        }
+    }
+</script>
+<style lang="scss">
+    p{
+        color:red
+    }
+</style>
+

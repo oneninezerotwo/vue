@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- V -->
+    <div id="demo">
+        <!-- <c1 v-if="bool"></c1>
+        <c2 v-else></c2> -->
+        <keep-alive>
+            <component v-bind:is="componentName"></component>
+        </keep-alive>
+        <button @click="toggle">toggle</button>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        Vue.component('c1', {
+            // M
+            data() {
+                return {
+                    title: 'c1'
+                }
+            },
+            render(h) {
+                // View <-Vnode = h(Model)
+                // 虚拟DOM
+                let vnode = h('div', null, [this.title]);
+                console.log(vnode)
+                return vnode
+            },
+            activated() {
+                console.log('activated')
+            },
+            deactivated() { 
+                console.log('deactivated')
+            },
+            beforeDestroy() {
+                console.log('beforeDestroy')
+             },
+            destroyed() {
+                console.log('destroyed')
+            }
+        })
+
+        Vue.component('c2', {
+            data() {
+                return {
+                    title: 'c2'
+                }
+            },
+            render(h) {
+                // View <-Vnode = h(Model)
+                // 虚拟DOM
+                let vnode = h('div', null, [this.title]);
+                console.log(vnode)
+                return vnode
+            }
+        })
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                componentName: 'c1',
+                bool: !0
+            },
+            methods: {
+                toggle() {
+                    this.bool = !this.bool;
+                    this.componentName = (this.componentName === 'c1' ? 'c2' : 'c1')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

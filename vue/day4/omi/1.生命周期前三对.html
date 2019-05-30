@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 1.真实DOM -->
+    <!-- <div>c1</div> -->
+    <!-- 2.函数 -->
+    <!-- h('div', null, [this.title]) -->
+    <!-- 3.对象 -->
+    <!-- {tag:'div',children:[{text:"c1"}]} -->
+    <!-- <template id="c1">
+        <div>c1</div>
+    </template>  -->
+    <div id="demo">
+        <c1></c1>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        Vue.component("c1", {
+            // 必须是函数
+            data() {
+                return {
+                    title: "c1"
+                }
+            },
+            // template:"#c1",
+            render(h) {
+                // View <-Vnode = h(Model)
+                // 虚拟DOM
+                let vnode = h('div', null, [this.title]);
+                console.log(vnode)
+                return vnode
+            },
+            beforeCreate() {
+                console.log("---------beforeCreate-----------")
+                // View 真实DOM
+                console.log('View', this.$el)
+                // Model 数据
+                console.log('Model', this.$data)
+            },
+            created() {
+                console.log("---------created-----------")
+                // View 真实DOM
+                console.log('View', this.$el)
+                // Model 数据
+                console.log('Model', this.$data)
+            },
+            beforeMount() {
+                console.log("---------beforeMount-----------")
+                // View 真实DOM
+                console.log('View', this.$el)
+                // Model 数据
+                console.log('Model', this.$data)
+            },
+            // render 虚拟DOM
+            mounted() {
+                console.log("---------mounted-----------")
+                // View 真实DOM
+                console.log('View', this.$el)
+                // Model 数据
+                console.log('Model', this.$data)
+                // Model更新了
+                setTimeout(() => {
+                    this.title = "Yao"
+                }, 1000)
+            },
+            // M更新
+            beforeUpdate() {
+                // 更新了Model
+                console.log("---------beforeUpdate-----------")
+                // View 真实DOM
+                console.log('View', this.$el)
+                // Model 数据
+                console.log('Model', this.$data)
+            },
+            // render 更新了虚拟DOM
+            updated() {
+                // View 更新真实DOM
+                console.log("---------updated-----------")
+                // View 真实DOM
+                console.log('View', this.$el)
+                // Model 数据
+                console.log('Model', this.$data)
+            },
+            
+        })
+        var vm = new Vue({
+            el: "#demo"
+        })
+    </script>
+</body>
+
+</html>

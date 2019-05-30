@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            background: red;
+        }
+    </style>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        Vue.component('myheader', {
+            props:['title','bgc'],
+            template: `
+                <header :style="{
+                    backgroundColor:bgc
+                }" v-text="title"></header>
+            `
+        })
+        new Vue({
+            el: "#demo",
+            template: `
+                <div>
+                    <myheader title="微信" bgc="red"></myheader>
+                    <myheader title="支付宝" bgc="blue"></myheader>
+                    <myheader title="今日头条" bgc="green"></myheader>
+                </div>
+            `
+        })
+    </script>
+</body>
+
+</html>

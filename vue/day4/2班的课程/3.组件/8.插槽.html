@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            background: red;
+        }
+    </style>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        Vue.component('myheader', {
+            props:['title','bgc'],
+            template: `
+                <header :style="{
+                    backgroundColor:bgc
+                }">
+                    <p name="p1">
+                        <slot name="header"></slot>
+                    </p>
+                    <p name="p2">
+                        <slot name="footer"></slot>
+                    </p>
+                </header>
+            `
+        })
+        new Vue({
+            el: "#demo",
+            // 组件之间的内容，将会替代<slot></slot>的内容
+            // 跟props props传递属性
+            // slot传递的是标签
+            // 父子通信方法，父组件可以通过props和slot来把数据给子组件
+            template: `
+                <div>
+                    <myheader bgc="red">
+                        <template v-slot:header>
+                            <h1>Here might be a page header</h1>
+                        </template>
+                        <template v-slot:footer>
+                            <h1>Here might be a page footer</h1>
+                        </template>
+                    </myheader>
+                    <myheader bgc="blue">
+                        <span>支付宝</span>
+                    </myheader>
+                </div>
+            `
+        })
+    </script>
+</body>
+
+</html>

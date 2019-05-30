@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var c3 = Vue.extend({
+            template:`
+                <div>子组件</div>
+            `
+        })
+        // vm根组件
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                title: "Hello World"
+            },
+            render(h) {
+                return h('div', null, [
+                    h('c2', null, null),
+                    h('c2', null, null)
+                ])
+            },
+            components:{
+                c2:{
+                    data(){
+                        return {
+                            title: "c2"
+                        }
+                    },
+                    template:`
+                        <div>
+                            <p v-text="title"></p>
+                            <input v-model="title" />
+                            <c3></c3>
+                            <hr />
+                        </div>
+                    `,
+                    components:{
+                        c3
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

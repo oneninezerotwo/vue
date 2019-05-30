@@ -1,0 +1,27 @@
+<template>
+    <header>
+        {this.data.title}
+    </header>
+</template>
+<script>
+// JS
+export default {
+    install() {
+        this.data = {
+            title: "微信"
+        }
+    }
+}
+</script>
+<style lang="scss">
+/* CSS */
+$size: 50px;
+header{
+    text-align: center;
+    width: 100%;
+    height: $size;
+    color: white;
+    line-height: $size;
+    background: red;
+}
+</style>

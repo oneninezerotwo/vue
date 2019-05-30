@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 选项
+            el: "#demo",
+            data: {
+                title: "Hello World"
+            },
+            render(h) {
+                return h('div', null, [
+                    h('c2', null, null),
+                    h('c2', null, null)
+                ])
+            },
+            // 有复数 局部，可以批量注册，建议局部注册组件
+            components:{
+                c2:{
+                    // 选项 new Vue均可以在这里使用
+                    data(){
+                        // 函数都会创建一个新的对象，保证每个组件的data不会相互影响
+                        return {
+                            title: "c2"
+                        }
+                    },
+                    watch:{
+                        
+                    },
+                    computed:{},
+                    methods:{},
+                    created(){},
+                    // render(h) {
+                    //     return h('p', null, [this.title])
+                    // },
+                    template:`
+                        <div>
+                            <p v-text="title"></p>
+                            <input v-model="title" />
+                            <hr />
+                        </div>
+                    `
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
