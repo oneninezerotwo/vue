@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <p>京剧</p> -->
+    <div id="demo">
+        <!-- Vue.directive自定义指令 -->
+        <p ref="p">{{title}}</p>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 选项
+            el: "#demo",
+            data: {
+                title: "京剧"
+            },
+
+            // template:`
+            //     <p ref="p">{{title}}</p>
+            // `,
+            // render(createElement){
+
+            //     // View(vnode) = C(Model)
+            //     let vnode = createElement('p',null,[this.title]);
+            //     console.log(vnode);
+            //     return vnode
+            // },
+            // 创建前，演员还没到场
+            beforeCreate() {
+                console.log('---------beforeCreate----------')
+                // 舞台   没视图
+                console.log('View', this.$el)
+                // 演员   没数据
+                console.log('Model', this.$data)
+            },
+
+            created() {
+                console.log('---------created----------')
+                // 舞台   没视图
+                console.log('View', this.$el)
+                // 演员   有数据
+                console.log('Model', this.$data)
+            },
+            beforeMount() {
+                console.log('---------beforeMount----------')
+                // 舞台   有视图 数据没挂载
+                //  <p>{{title}}</p>内存镜像
+                console.log('View', this.$el)
+                // 演员   有数据
+                console.log('Model', this.$data)
+                
+                console.log(this.$refs.p)
+            },
+            mounted() {
+                this.$refs.p.style.color = 'red'
+                console.log('---------mounted----------')
+                // 舞台   
+                // <!-- <p>京剧</p> -->
+                console.log('View', this.$el)
+                // 演员  有数据
+                console.log('Model', this.$data)
+                setTimeout(() => {
+                    this.title = "粤剧"
+                }, 1000)
+            },
+            beforeUpdate() {
+                console.log('---------beforeUpdate----------')
+                // 舞台 V没更新
+                // <!-- <p>京剧</p> -->
+                console.log('View', this.$el)
+                // 演员 M更新了
+                // <!-- title: 粤剧 -->
+                console.log('Model', this.$data)
+                // 演员变了 舞台没变
+                // alert(this.title)
+            },
+            updated(){
+                console.log('---------updated----------')
+                // 舞台 V更新了
+                // <!-- <p>粤剧</p> -->
+                console.log('View', this.$el)
+                // 演员 M更新了
+                // <!-- title: 粤剧 -->
+                console.log('Model', this.$data)
+            },
+
+        })
+    </script>
+</body>
+
+</html>

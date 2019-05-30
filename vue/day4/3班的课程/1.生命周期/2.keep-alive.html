@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+
+        <!-- keep-alive activated和deactivated，活跃和活跃，虚拟DOM，对象面试真实DOM -->
+        <button @click="toggleCp">toggle</button>
+        <keep-alive>
+            <component :is="componentName"></component>
+        </keep-alive>
+        <hr />
+        <!-- v-if beforeDestroy和destroyed 增加或者删除都会触发销毁 -->
+        <cp2 v-if="bool"></cp2>
+        <cp1 v-else></cp1>
+
+        <button @click="toggleCp">toggleCp</button>
+    </div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        Vue.component('cp1', {
+            template: `
+                <div>cp1</div>
+            `,
+            activated(){
+                console.log('activated')
+            },
+            deactivated(){
+                console.log('deactivated')
+            },
+            // v-if会触发销毁
+            beforeDestroy(){
+                console.log('beforeDestroy')
+            },
+            destroyed(){
+                console.log('destroyed')
+            },
+            errorCaptured(err){
+                console.log(err)
+            }
+        })
+
+        Vue.component('cp2', {
+            template: `
+                <div>cp2</div>
+            `
+        })
+        var vm = new Vue({
+            el: "#demo",
+            data: {
+                componentName: "cp2",
+                bool: true
+            },
+            methods: {
+                toggleCp() {
+                    this.componentName = (this.componentName === "cp1" ? "cp2" : "cp1");
+                    this.bool = !this.bool
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
