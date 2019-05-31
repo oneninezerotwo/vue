@@ -1,0 +1,26 @@
+<template>
+    <header>
+        {this.data.title}
+    </header>
+    
+</template>
+<script>
+export default{
+    install(){
+        this.data = {
+            title: '支付宝'
+        }
+    }
+}
+</script>
+<style lang="scss">
+    $size: 60px;
+    header{
+        text-align: center;
+        background: red;
+        width: 100%;
+        height: $size;
+        line-height: $size;
+        color: white;
+    }
+</style>

@@ -106,6 +106,17 @@ require('./bootstrap.png')
 转化文件，相当gulp的task
 
 webpack只能识别JS文件，任何非JS文件均需要loader来去转化为JS
+
+Vue会把template的方法转为render
+```js
+new Vue({
+  // render优先级
+  render(){},
+  template:`
+    <p>1</p>
+  `
+})
+```
 ```js
 scss->css->js
 typescript->javascript->js
