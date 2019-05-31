@@ -6,7 +6,7 @@
 - 多变少(有可能只留下一个)(文件数，文件后缀，文件大小)
 - 多模块变少模块(压缩，转化)
 
-webpack = gulp + requirejs
+webpack = gulp(打包合并压缩) + requirejs(模块化)
 
 是gulp(node)和requirejs(浏览器环境)的替代方案
 
@@ -19,6 +19,8 @@ webpack需要node环境
 - webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)
 
 
+
+
 # 安装
 
 四个核心概念：
@@ -28,17 +30,24 @@ webpack需要node环境
 - 加载器(loader)
 - 插件(plugins)
 
+全局路径下安装xxx.cmd你才可以在全局终端执行对应的命令
+```
+C:\Users\Z\AppData\Roaming\npm
+```
+cli == commomd line interface命令行可视化界面
 ```js
 cnpm install -g webpack
 cnpm install -g webpack-cli
-```
 
+webpack -v
+```
+如果再全局目录有`webpack.cmd`那就是安装成功
 
 # 入口
 
 创建一份`webpack.config.js`，webpack的配置文件
 
-相当于当时写gulp的gulpfile.js，作用相似
+相当于当时写gulp的`gulpfile.js`，作用相似
 
 ```js
 module.exports = {
