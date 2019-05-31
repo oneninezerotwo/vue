@@ -1,12 +1,17 @@
 const path = require('path');
+// 模板
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// 生成html
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    mode: 'production',
+    // min 和 源文件
+    mode: 'development',
     // 入口
     entry: './src/index.js',
     // 出口
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: '[hash].js'
     },
     // 加载器
     module: {
@@ -42,7 +47,22 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(htm|html)$/,
+                use: [
+                    {
+                        loader: 'html-loader'
+                    }
+                ]
             }
         ]
-    }
+    },
+    // 插件
+    plugins: [
+        // new UglifyJsPlugin(),
+        new HtmlWebpackPlugin({
+            template: './template/index.html'
+        })
+    ]
 };

@@ -115,3 +115,27 @@ js->jsx->js
 png->js
 ```
 
+# 插件
+
+
+使用一个压缩JS代码的插件
+
+[uglifyjs-webpack-plugin](https://www.webpackjs.com/plugins/uglifyjs-webpack-plugin/)
+
+安装
+
+```js
+cnpm i -D webpack
+cnpm i -D uglifyjs-webpack-plugin
+```
+
+要在`webpack.config.js`加入以下配置
+```js
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+module.exports = {
+  plugins: [
+    new UglifyJsPlugin()
+  ]
+}
+```
