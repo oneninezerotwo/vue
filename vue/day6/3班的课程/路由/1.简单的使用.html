@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <!-- 必须引入在vue的后面 -->
+    <script src="../../../js/vue-router.js"></script>
+    <script>
+        // 商品页组件
+        const Home = Vue.extend({
+            data() {
+                return {
+                    goods: ['mobile', 'pc']
+                }
+            },
+            template: `
+                <ul>
+                    <li v-for="(g,index) in goods">
+                        <router-link to="/detail">Go to {{g}}</router-link>
+                    </li>
+                </ul>
+            `
+        })
+
+        // 详情页
+        const Detail = Vue.extend({
+            data() {
+                return {
+                    goods: ['mobile', 'pc']
+                }
+            },
+            template: `
+                <div>
+                    详情页
+                </div>
+            `
+        })
+
+        // 配置路由信息
+        const routes = [
+            // 如果此时路径为/detail,加载组件Detail
+            { path: '/detail', component: Detail },
+            // 如果此时路径为/home,加载组件Detail
+            { path: '/home', component: Home }
+        ]
+
+        // VueRouter是vue-router提供的
+        const router = new VueRouter({
+            routes // short for `routes: routes`
+        })
+
+        // Vue是vue.js提供的
+        new Vue({
+            el: "#demo",
+            // 注入router对象，让Vue应用拥有路由的功能
+            router,
+            template: `
+                <div>
+                    头部
+                    <router-view></router-view>
+                </div>
+            `,
+            components: {
+                Home,
+                Detail
+            }
+        })
+    </script>
+</body>
+
+</html>
