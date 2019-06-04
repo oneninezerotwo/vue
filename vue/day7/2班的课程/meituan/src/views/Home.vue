@@ -3,6 +3,7 @@
     <Mheader/>
     <Mnavigation/>
     <Mmenu/>
+    <Mkklist/>
   </div>
 </template>
 
@@ -11,11 +12,13 @@ import { Component, Vue } from 'vue-property-decorator';
 import Mheader from '@/components/Mheader.vue';
 import Mnavigation from '@/components/Mnavigation.vue';
 import Mmenu from '@/components/Mmenu.vue';
+import Mkklist from '@/components/Mkklist.vue';
 @Component({
   components: {
     Mheader,
     Mnavigation,
-    Mmenu
+    Mmenu,
+    Mkklist
   }
 })
 export default class Home extends Vue {}

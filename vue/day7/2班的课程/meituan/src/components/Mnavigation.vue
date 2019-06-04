@@ -1,8 +1,14 @@
 <template>
   <div class="_2qDABxIhG58DjS3SnGcdQ4">
-    <div class="_11TYQrv0WY_3j7bGnRwtih">
+    <div ref="father" class="_11TYQrv0WY_3j7bGnRwtih">
       <div class="_3SHCeLB5gfUdeTSqdHGT-w"></div>
-      <a v-for="(k,index) in kingkongList" :key="index" class="efeR5uyg2vbdcC1mfhm1B" data-cateid="910">
+      <a
+        v-appendhtml="$refs.father"
+        v-for="(k,index) in kingkongList"
+        :key="index"
+        class="efeR5uyg2vbdcC1mfhm1B"
+        data-cateid="910"
+      >
         <div class="lYqlChWY4rNp3-JYyHmhG">
           <div>
             <div class="_3_juUbSw5kiHB8btC6rFF6 lazyimage-holder">
@@ -98,7 +104,10 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-
+// Vue.directive('appendhtml',(el, binding)=>{
+//   console.log(el)
+// })
+// import $ from "zepto";
 export default Vue.extend({
   data() {
     return {
@@ -111,6 +120,19 @@ export default Vue.extend({
     );
     this.kingkongList = data.data.data.kingkongList.slice(0, 6);
     console.log(data);
+  },
+  mounted(){
+    console.log(this.$refs.father);
+  },
+  directives: {
+    appendhtml(el, binding) {
+      // <div class="_3SHCeLB5gfUdeTSqdHGT-w"></div>
+      // var newItem=document.createElement("div")
+      // newItem.className = '_3SHCeLB5gfUdeTSqdHGT-w'
+      // console.log(el, binding.value);
+      // binding.value.insertBefore(newItem, el)
+      // $(binding.value).before(`<div class="_3SHCeLB5gfUdeTSqdHGT-w"></div>`)
+    }
   }
 });
 </script>
