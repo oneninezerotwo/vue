@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        var bus = new Vue();
+        const Son = {
+            data(){
+                return {
+                    son:null
+                }
+                
+            },
+            template:`<div style="border:1px solid red;padding:20">
+                    另外一个儿子 {{son}}
+            </div>`,
+            mounted(){
+                bus.$on('son',(data)=>{
+                    console.log('son',data)
+                    this.son = data
+                })
+            }
+        }
+        const Detail = {
+            data() {
+                return {
+                    child: 'kkk',
+                    message:null,
+                    son: null
+                }
+            },
+            props: ['name'],
+            template: `
+                <div style="border:1px solid red;padding:20">
+                    儿子
+                    Detail {{child}} 组件 {{son}}
+                    <input v-model="message" />
+                    <button @click="send('son')">send</button>
+                </div>
+            `,
+            methods:{
+                send(name){
+                    this.message
+                    // 发送数据
+                    console.log(this.message)
+                    bus.$emit('son',this.message)
+                }
+            },
+            mounted(){
+                bus.$on('son',(data)=>{
+                    console.log('son',data)
+                    this.son = data
+                })
+            }
+            
+        }
+        const Home = {
+            props: ['name'],
+            data() {
+                return {
+                    child: null,
+                    grandFather: null,
+                    
+                }
+            },
+            template: `
+                <div style="border:1px solid blue;padding:20px">
+                    爸爸
+                    Home {{name}} 组件
+                    从儿子中获取 {{child}}
+                    从爷爷中获取 {{grandFather}}
+                    <Son/>
+                    <Detail :name="name"/>
+                    <Detail :name="name"/>
+                </div>
+            `,
+            mounted() {
+            },
+            
+            components: {
+                Detail,
+                Son
+            }
+        }
+
+
+        new Vue({
+            el: "#demo",
+            data() {
+                return {
+                    grandFather: 'lll'
+                }
+            },
+            template: `
+                <div style="border:1px solid green;padding:20px">
+                    爷爷
+                    <Home name="abc"/>
+                    <hr/>
+                    <Home name="abc"/>
+                </div>
+            `,
+            components: {
+                Home
+            }
+        })
+
+        // $('button').on('click', () => {
+
+        // })
+        // vm.$on('test', function (msg) {
+        //     console.log(msg)
+        // })
+    </script>
+</body>
+
+</html>

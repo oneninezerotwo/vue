@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script>
+        const Detail = {
+            data(){
+                return {
+                    child:'kkk'
+                }
+            },
+            props:['name'],
+            template:`
+                <div style="border:1px solid red;padding:20">
+                    儿子
+                    Detail {{child}} 组件
+                </div>
+            `
+        }
+        const Home = {
+            props:['name'],
+            data(){
+                return {
+                    child:null,
+                    grandFather:null
+                }
+            },
+            template:`
+                <div style="border:1px solid blue;padding:20px">
+                    爸爸
+                    Home {{name}} 组件
+                    从儿子中获取 {{child}}
+                    从爷爷中获取 {{grandFather}}
+                    <Detail :name="name"/>
+                    <Detail :name="name"/>
+                </div>
+            `,
+            mounted(){
+                console.log('home',this)
+                this.child = this.$children[0].child
+                this.grandFather = this.$parent.grandFather
+            },
+            components:{
+                Detail
+            }
+        }
+
+        
+        new Vue({
+            el:"#demo",
+            data(){
+                return {
+                    grandFather: 'lll'
+                }
+            },
+            template:`
+                <div style="border:1px solid green;padding:20px">
+                    爷爷
+                    <Home name="abc"/>
+                    <hr/>
+                    <Home name="abc"/>
+                </div>
+            `,
+            components:{
+                Home
+            }
+        })
+    </script>
+</body>
+</html>
