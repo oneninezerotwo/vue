@@ -86,6 +86,7 @@
   </div>
 </template>
 <script lang="ts">
+import bus from "../bus";
 import Vue from "vue";
 import request from "../libs/request";
 export default Vue.extend({
@@ -124,10 +125,19 @@ export default Vue.extend({
     // 257
     // 懒加载
     window.addEventListener("scroll", () => {
-      
       if (window.scrollY + 257 >= this.$refs.list.offsetHeight) {
-        console.log("到底部了")
-        this.getShopList()
+        console.log("到底部了");
+        this.getShopList();
+      }
+      // 滑动距离大于50处罚menu的固定
+      if (window.scrollY > 217) {
+        bus.$emit("menuFixed", {
+          status: 1
+        });
+      }else{
+        bus.$emit("menuFixed", {
+          status: 0
+        });
       }
       // console.log(window.scrollY)
       // console.log(window.innerHeight)
