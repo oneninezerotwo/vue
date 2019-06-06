@@ -5,6 +5,7 @@
     <Mnearby/>
     <Mmenu/>
     <Mkklist/>
+    <!-- <Mfooter/> -->
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import Mnavigation from '@/components/Mnavigation.vue';
 import Mnearby from '@/components/Mnearby.vue';
 import Mmenu from '@/components/Mmenu.vue';
 import Mkklist from '@/components/Mkklist.vue';
+import Mfooter from '@/components/Mfooter.vue';
 @Component({
   components: {
     Mheader,
@@ -22,7 +24,12 @@ import Mkklist from '@/components/Mkklist.vue';
     Mnearby,
     Mmenu,
     Mkklist,
+    Mfooter
   },
+  created(){
+    // home组件进场通知Mfooter组件出现
+    this.$store.state.isShowMfooter = true
+  }
 })
 export default class Home extends Vue {}
 </script>

@@ -2617,8 +2617,13 @@
   </article>
 </template>
 <script>
-export default {};
+export default {
+  created(){
+    // detail组件进场通知Mfooter组件删除
+    this.$store.state.isShowMfooter = false
+  }
+};
 </script>
 <style scoped>
-@import '../assets/detail.css';
+/* @import '../assets/detail.css'; */
 </style>

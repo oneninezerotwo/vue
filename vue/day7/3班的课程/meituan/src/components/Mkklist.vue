@@ -110,7 +110,7 @@ export default Vue.extend({
     });
   },
   methods: {
-    wmPoiScore(score) {
+    wmPoiScore(score:number) {
       return (score / 10).toFixed(1);
     },
     async getShopList() {

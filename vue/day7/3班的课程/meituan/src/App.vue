@@ -1,8 +1,18 @@
 <template>
   <div id="app">
     <router-view/>
+    <Mfooter/>
   </div>
 </template>
+<script lang="ts">
+import Vue from 'vue'
+import Mfooter from './components/Mfooter.vue';
+export default Vue.extend({
+  components:{
+    Mfooter
+  }
+})
+</script>
 
 <style lang="scss">
 *{
