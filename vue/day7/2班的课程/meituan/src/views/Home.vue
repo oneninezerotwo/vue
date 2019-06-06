@@ -4,6 +4,8 @@
     <Mnavigation/>
     <Mmenu/>
     <Mkklist/>
+    <Mloading/>
+    <!-- <Mfooter/> -->
   </div>
 </template>
 
@@ -13,13 +15,21 @@ import Mheader from '@/components/Mheader.vue';
 import Mnavigation from '@/components/Mnavigation.vue';
 import Mmenu from '@/components/Mmenu.vue';
 import Mkklist from '@/components/Mkklist.vue';
+import Mloading from '@/components/Mloading.vue';
+import Mfooter from '@/components/Mfooter.vue';
 @Component({
   components: {
     Mheader,
     Mnavigation,
     Mmenu,
-    Mkklist
-  }
+    Mkklist,
+    Mloading,
+    Mfooter,
+  },
+  created() {
+    // 通知底部出现
+    this.$store.state.isShowMfooter = 1;
+  },
 })
 export default class Home extends Vue {}
 </script>

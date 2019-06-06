@@ -3,7 +3,7 @@
     <div class="_3XRWZqdyupCVEnwa2XBFGr homeshoplist">
       <ul ref="list" class="_2db1e1m154ODnjL1-ivQvq">
         <li v-for="(s,index) in shopList" :key="index" data-watch="1118788624027580">
-          <router-link to="/about" class="FcKg0z7ZA3tlZo-vSxopN" role="logo" aria-label="真功夫（龙洞）">
+          <router-link to="/detail" class="FcKg0z7ZA3tlZo-vSxopN" role="logo" aria-label="真功夫（龙洞）">
             <div class="_2q5HWkq__CHgEQLE76bhCF" role="logo" aria-label="真功夫（龙洞）">
               <img
                 src="http://p1.meituan.net/aichequan/a88918ba8699e15a5d16d5d7e09ad0022192.png"
@@ -86,15 +86,15 @@
   </div>
 </template>
 <script lang="ts">
-import bus from "../bus";
-import Vue from "vue";
-import request from "../libs/request";
+import bus from '../bus';
+import Vue from 'vue';
+import request from '../libs/request';
 export default Vue.extend({
   data() {
     return {
       shopList: [],
       timer: null,
-      offsetHeight: 0
+      offsetHeight: 0,
     };
   },
   created() {
@@ -103,9 +103,9 @@ export default Vue.extend({
     // M更新 V没更新
     // M更新了 但是V没更新 nextTick监听V更新了
     this.$nextTick(() => {
-      console.log(this.$refs.list.offsetHeight);
-      console.log(this.$refs.list.textContent);
-      console.log(this.$refs.list.offsetTop);
+      // console.log(this.$refs.list.offsetHeight);
+      // console.log(this.$refs.list.textContent);
+      // console.log(this.$refs.list.offsetTop);
       this.offsetHeight = this.$refs.list.offsetHeight;
     });
   },
@@ -116,39 +116,39 @@ export default Vue.extend({
     async getShopList() {
       const { g, p } = request;
       const data = await g({
-        url: "https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/shoplist"
+        url: 'https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/shoplist',
       });
       this.shopList = [...this.shopList, ...data.data.data.shopList];
-    }
+    },
   },
   mounted() {
     // 257
     // 懒加载
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (window.scrollY + 257 >= this.$refs.list.offsetHeight) {
-        console.log("到底部了");
+        // console.log("到底部了");
         this.getShopList();
       }
       // 滑动距离大于50处罚menu的固定
       if (window.scrollY > 217) {
-        bus.$emit("menuFixed", {
-          status: 1
+        bus.$emit('menuFixed', {
+          status: 1,
         });
-      }else{
-        bus.$emit("menuFixed", {
-          status: 0
+      } else {
+        bus.$emit('menuFixed', {
+          status: 0,
         });
       }
-      // console.log(window.scrollY)
-      // console.log(window.innerHeight)
-      // console.log(this.$refs.list.offsetTop)
-      // console.log(this.$refs.list.offsetHeight)
+      // // console.log(window.scrollY)
+      // // console.log(window.innerHeight)
+      // // console.log(this.$refs.list.offsetTop)
+      // // console.log(this.$refs.list.offsetHeight)
     });
     // window.onscroll = function(){
 
     // }
     // this.timer = window.setInterval(()=>{
-    //   console.log(1)
+    //   // console.log(1)
     // },1000)
   },
   destroyed() {
@@ -156,17 +156,17 @@ export default Vue.extend({
     // clearInterval(this.timer)
   },
   // updated(){
-  //   console.log(this.$refs.list.offsetHeight)
-  //   console.log(this.$refs.list.textContent)
+  //   // console.log(this.$refs.list.offsetHeight)
+  //   // console.log(this.$refs.list.textContent)
   // },
   watch: {
     shopList() {
-      console.log(this.$refs.list.offsetHeight);
-      console.log(this.$refs.list.textContent);
+      // console.log(this.$refs.list.offsetHeight);
+      // console.log(this.$refs.list.textContent);
       // M更新->V没更新
-      console.log(this.shopList);
-    }
-  }
+      // console.log(this.shopList);
+    },
+  },
 });
 </script>
 

@@ -11,15 +11,15 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 export default Vue.extend({
   data() {
     return {
-      bool: 0
+      bool: 0,
     };
   },
   mounted() {
-    window.addEventListener("scroll", this.scroll, true);
+    window.addEventListener('scroll', this.scroll, true);
   },
   methods: {
     scroll() {
@@ -28,12 +28,12 @@ export default Vue.extend({
       } else {
         this.bool = 0;
       }
-    }
+    },
   },
   destroyed() {
     window.onscroll = null;
-    window.removeEventListener("scroll", this.scroll, false);
-  }
+    window.removeEventListener('scroll', this.scroll, false);
+  },
 });
 </script>
 

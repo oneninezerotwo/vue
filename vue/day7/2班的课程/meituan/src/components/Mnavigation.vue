@@ -103,7 +103,7 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 // Vue.directive('appendhtml',(el, binding)=>{
 //   console.log(el)
 // })
@@ -111,17 +111,17 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      kingkongList: []
+      kingkongList: [],
     };
   },
   async created() {
     const data = await this.$axios(
-      "https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/kingkong"
+      'https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/kingkong',
     );
     this.kingkongList = data.data.data.kingkongList.slice(0, 6);
     console.log(data);
   },
-  mounted(){
+  mounted() {
     console.log(this.$refs.father);
   },
   directives: {
@@ -132,8 +132,8 @@ export default Vue.extend({
       // console.log(el, binding.value);
       // binding.value.insertBefore(newItem, el)
       // $(binding.value).before(`<div class="_3SHCeLB5gfUdeTSqdHGT-w"></div>`)
-    }
-  }
+    },
+  },
 });
 </script>
 

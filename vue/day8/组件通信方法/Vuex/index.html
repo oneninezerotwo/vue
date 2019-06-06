@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script src="../../../js/vue.js"></script>
+    <script src="../../../js/vuex.js"></script>
+    <script>
+        // 实例化一个store数据仓库对象
+        // 全局数据的调度中心
+        // 里面存放，全局数据，公有数据
+        // 内存
+        // 适合在同一个页面的不同组件传递值
+        // 不适合做在跨页面传递
+        const store = new Vuex.Store({
+            // 状态
+            state: {
+                count: 0,
+                author: 'yao',
+                arr: ['skill', 'ps', 'css'],
+                obj: {
+                    name: 'vue',
+                    age: 5
+                }
+            },
+            mutations: {
+                increment(state) {
+                    state.count++
+                }
+            }
+        })
+
+        Vue.component('Child',{
+            data(){
+                return {
+                    name: 'CCCC'
+                }
+            },
+            template:`
+            <div>
+                child{{name}}
+                <input v-model="name" />
+                <button @click="send">send</button>
+            </div>
+            `,
+            created(){
+                console.log(this.$store.state.author)
+            },
+            methods:{
+                send(){
+                    // 更改仓库的值
+                    this.$store.state.author = this.name
+                }
+            }
+        })
+
+        new Vue({
+            el: "#demo",
+            // 把仓库注册到根组件里面
+            // 将会在this里面拥有一个$store
+            store,
+            // 将会在$router
+            // router,
+            template: `
+            <div>
+                <p v-text="author"></p>
+                <Child/>    
+            </div>`,
+            // 私有数据 M->V
+            data: {
+                num: 1
+            },
+            computed: {
+                author() {
+                    console.log(this)
+                    // 从仓库获取author到组件里面使用
+                    return this.$store.state.author;
+                }
+            },
+            mounted() {
+                setInterval(() => {
+                    this.num += 1
+                }, 1000);
+            },
+            updated() {
+                console.log('更新')
+            }
+        })
+    </script>
+</body>
+<!-- Facebook -->
+<!-- redux react-router react -->
+<!-- vuex vue-router vue -->
+</html>

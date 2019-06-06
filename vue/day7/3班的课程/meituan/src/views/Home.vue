@@ -21,7 +21,7 @@ import Mkklist from '@/components/Mkklist.vue';
     Mnavigation,
     Mnearby,
     Mmenu,
-    Mkklist
+    Mkklist,
   },
 })
 export default class Home extends Vue {}

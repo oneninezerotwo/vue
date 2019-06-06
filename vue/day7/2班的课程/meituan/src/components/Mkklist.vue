@@ -3,7 +3,8 @@
     <div ref="wrapper" class="_3XRWZqdyupCVEnwa2XBFGr homeshoplist">
       <ul class="_2db1e1m154ODnjL1-ivQvq">
         <li v-for="(s,index) in shopList" :key="index" data-watch="1118788624027580">
-          <router-link to="/about" class="FcKg0z7ZA3tlZo-vSxopN" role="logo" aria-label="真功夫（龙洞）">
+          <!-- 声明式导航 -->
+          <router-link to="/list" class="FcKg0z7ZA3tlZo-vSxopN" role="logo" aria-label="真功夫（龙洞）">
             <div class="_2q5HWkq__CHgEQLE76bhCF" role="logo" aria-label="真功夫（龙洞）">
               <img
                 src="http://p1.meituan.net/aichequan/a88918ba8699e15a5d16d5d7e09ad0022192.png"
@@ -76,20 +77,21 @@
           </router-link>
         </li>
       </ul>
-      <div class="_2DWI5MQavfzP27kRciy2ia">
+      <div @click="getShopList" class="_2DWI5MQavfzP27kRciy2ia">
         <div class="_33vevPA4wCUHDSyh8YgZyS"></div>
-        <span>正在加载...</span>
+        <span v-text="loading>0?'正在加载...':'点击加载'"></span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import BScroll from "better-scroll";
+import Vue from 'vue';
+import BScroll from 'better-scroll';
 export default Vue.extend({
+  // 私有数据
   data() {
     return {
-      shopList: []
+      shopList: [],
     };
   },
   created() {
@@ -101,29 +103,44 @@ export default Vue.extend({
       // });
     });
   },
-  mounted(){
-    window.onscroll = (e)=>{
-      if(window.scrollY===2408){
-        this.getShopList();
+  mounted() {
+    window.onscroll = (e) => {
+      // if(window.scrollY===2408){
+      //   this.getShopList();
+      // }
+      // console.log(window.innerHeight)
+      // console.log(window.scrollY)
+      if (window.scrollY > 250) {
+        this.$store.state.isFixedMenu = true;
+      } else {
+        this.$store.state.isFixedMenu = false;
       }
-      console.log(window.innerHeight)
-      console.log(window.scrollY)
-    }
+    };
   },
   methods: {
     // 获取列表数据
     async getShopList(callback) {
+      this.$store.state.loading += 1;
       const data = await this.$axios(
-        "https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/shoplist"
+        'https://www.easy-mock.com/mock/5cee26e4c7e0071827e4f109/shoplist',
       );
+      this.$store.state.loading -= 1;
       console.log(data);
       this.shopList = [...this.shopList, ...data.data.data.shopList];
       // callback();
     },
     wmPoiScore(wmPoiScore) {
       return wmPoiScore / 10;
-    }
-  }
+    },
+  },
+  computed: {
+        loading() {
+            // 把仓库的公有变量获取到loading组件里面使用
+            console.log(this);
+            // 从仓库拿到一个值
+            return this.$store.state.loading;
+        },
+    },
 });
 </script>
 

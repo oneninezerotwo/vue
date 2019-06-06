@@ -30,20 +30,20 @@
   </div>
 </template>
 <script lang="ts">
-import bus from "../bus";
-import Vue from "vue";
+import bus from '../bus';
+import Vue from 'vue';
 export default Vue.extend({
-  data(){
+  data() {
     return {
-      bool:false
-    }
+      bool: false,
+    };
   },
   mounted() {
-    bus.$on("menuFixed", (config) => {
-      console.log('我要固定了')
-      this.bool = config.status?true:false
+    bus.$on('menuFixed', (config) => {
+      // console.log('我要固定了')
+      this.bool = config.status ? true : false;
     });
-  }
+  },
 });
 </script>
 

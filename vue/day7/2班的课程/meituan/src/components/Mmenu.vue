@@ -2,7 +2,11 @@
   <div>
     <div class="_1GWVJT2OLFMK_zt-Pdonb">附近商家</div>
     <div class="_1KjqV4W7A9sBbIZx9J-l7R">
-      <div class="_2ERaZOgKrKE21uYNISlvxw" style="top: 0px;">
+      <div class="_2ERaZOgKrKE21uYNISlvxw" :class="{
+        '_2Byhc4wl6qAmYvE_1JA37-':isFixedMenu
+      }" :style="{
+        top: isFixedMenu?'50px':'0px'
+      }">
         <div class="_22YSgYsVZZ33WpdC5csPhH">
           <ul class="CpTpAqo273nQXSG__3F68">
             <li class="_3E-rqFFoOgqpMgyxWrzStr">
@@ -23,6 +27,17 @@
     </div>
   </div>
 </template>
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
+  computed: {
+    isFixedMenu() {
+      return this.$store.state.isFixedMenu;
+    },
+  },
+});
+</script>
+
 <style lang="scss" scoped>
 ._1GWVJT2OLFMK_zt-Pdonb::before {
   content: "";
@@ -148,6 +163,9 @@
 ._2MeKe8f8Z3IcJZOkZXaPz7 {
     list-style: none;
     background-color: #fff;
+}
+._1KjqV4W7A9sBbIZx9J-l7R ._2ERaZOgKrKE21uYNISlvxw._2Byhc4wl6qAmYvE_1JA37- {
+    position: fixed;
 }
 </style>
 

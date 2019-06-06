@@ -1,7 +1,7 @@
 <template>
   <div class="_2m6ykQWMTX3_dW7Ab-XsY8">
     <div class="_1JHn9KhcnvNrar1crXmTIk" :class="{
-        '_350JA45HCnWxLcngmBwzjl': bool
+        '_350JA45HCnWxLcngmBwzjl': isFixedMenu
     }">
       <div class="XojVIq9qzHwkS-H5hJLWh">广东省华侨职业技术学校</div>
     </div>
@@ -11,11 +11,11 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 export default Vue.extend({
   data() {
     return {
-      bool: !0
+      bool: !0,
     };
   },
   created() {
@@ -27,8 +27,13 @@ export default Vue.extend({
     toggle() {
       console.log(1);
       this.bool = !this.bool;
-    }
-  }
+    },
+  },
+  computed: {
+    isFixedMenu() {
+      return this.$store.state.isFixedMenu;
+    },
+  },
 });
 </script>
 
